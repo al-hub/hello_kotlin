@@ -20,12 +20,12 @@ fun main() = runBlocking {
 
   launch {
     delay(1000L)
-    println("World1!")
+    println("World 1")
   }
   
   launch {
     delay(1000L)
-    println("World2!")
+    println("World 2")
   }
   
   println("Hello")
