@@ -263,12 +263,12 @@ fun <T> CoroutineScope.async(
   …
   block: suspend CoroutineScope.() -> T
 ): Deferred<T>
-``
+```
 -> Coroutine body안에서 parent-child 구조를 만들기 위해서!!
 
 이런게 가능하다!!(Coroutines from a hierarchy, Concurrency의 lifecycle Management 할 때, 가능하다!!)  
 parent-child relationship  
-```
+```kotlin
 scope.launch{
   launch{
     launch{
