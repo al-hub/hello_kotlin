@@ -286,6 +286,35 @@ fun main() = runBlocking<Unit> {
 }
 ```
 
+```
+launch(Dispatchers.Unconfined) -  [main] 
+launch(Dispatchers.Default) -  [DefaultDispatcher-worker-1] 
+launch(Dispatchers.Default) -  [DefaultDispatcher-worker-1] 
+newSingleThreadContext -  [MyOwnThread] 
+launch -  [main] 
+```
+
+
+Job  
+```kotlin
+fun main() = runBlocking<Unit>() {
+    println("Job is ${coroutineContext[Job]}")
+    
+    launch {
+      println("Job is ${coroutineContext[Job]}")
+    }
+    
+    async {
+      println("Job is ${coroutineContext[Job]}")
+    }
+}
+```
+```
+Job is BlockingCoroutine{Active}@eec5a4a [main] 
+Job is StandaloneCoroutine{Active}@72b6cbcc [main] 
+Job is DeferredCoroutine{Active}@68bbe345 [main] 
+```
+
 - tip
 ```kotlin  
 fun <T>println(msg: T) {
