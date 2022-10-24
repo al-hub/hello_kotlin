@@ -5,3 +5,55 @@ structured concurrency
 
 dispathcer  
 : thread에 coroutine을 보낸다.([예시](https://kotlinworld.com/141))     
+
+
+## [Coroutines Basic](https://kotlinlang.org/docs/coroutines-basics.html#table-of-contents)  
+
+basic code
+```kotlin
+fun main() {
+  GlobalScope.launch{
+    delay(1000L)
+    println("World!)
+  }
+  
+  println("Hello")
+  Thread.sleep(2000L)
+}
+```
+
+Scope builder and concurrency  
+```kotlin
+// Sequentially executes doWorld followed by "Done"
+fun main() = runBlocking {
+    doWorld()
+    println("Done")
+}
+
+// Concurrently executes both sections
+suspend fun doWorld() = coroutineScope { // this: CoroutineScope
+    launch {
+        delay(2000L)
+        println("World 2")
+    }
+    launch {
+        delay(1000L)
+        println("World 1")
+    }
+    println("Hello")
+}
+```
+
+Coroutines are light-weight  
+```kotlin
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    repeat(100_000) { // launch a lot of coroutines
+        launch {
+            delay(5000L)
+            print(".")
+        }
+    }
+}
+```
