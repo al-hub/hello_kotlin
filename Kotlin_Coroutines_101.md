@@ -1,4 +1,4 @@
-# Coroutines simplify asynchrounous ( async prpgramming )
+# Coroutines simplify asynchronous ( async programming )
 
 - What problems Coroutines solve  
 - Dispatchers & withContext  
