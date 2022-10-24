@@ -10,4 +10,9 @@
 - Trampoline느낌, flatmap: list of list를 하나의 list로 펼칠 때 -> controller를 줬다 받았다 하면서 진행
 - Generators
 
-## 
+- The Art of computer Programming (읽지않는(?) 필수책)  
+
+
+## 이론
+- 개념: coroutine은 multiple entry/exit point  
+- Basically, coroutines are computations that can be suspended without blocking a thread  
