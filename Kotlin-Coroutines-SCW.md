@@ -155,12 +155,14 @@ println("Result is $result")
 1. Sequential by default (일반코드로 작성해도 순차적으로 찍힌다!! - [안드로이드_테스트코드](https://blogattach.naver.net/bb2ea71404303184af4f2d1125cbb8c56531cd99/20200627_147_blogfile/cenodim_1593231145470_9qf7cv_zip/4_Composing_Suspending_Functions_android.zip))  
 ```kotlin
 fun main() == runBlocking<Unit>{
+
   val time = measureTimeMillis {
     val one = doSomethingUsefulOne()
     val two = doSomethingUsefulTwo()
     println("The answer is ${one + two}")
   }
   println("Completed in $time ms")
+  
 }
 
 suspend fun doSomethingUsefulOne(): Int {
