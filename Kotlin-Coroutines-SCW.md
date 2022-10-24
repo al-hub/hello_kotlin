@@ -257,6 +257,35 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 ```
 
+## [Coroutine Context and Dispachers]  
+기본방식
+```kotlin
+fun main() = runBlocking<Unit> {
+
+  launch {
+    println("launch - ")
+  }
+  
+  lauch(Dispatchers.Unconfined) {
+    println("launch(Dispatchers.Unconfined) - ")
+  }
+  
+  lauch(Dispatchers.Default) {
+    println("launch(Dispatchers.Default) - ")
+  }
+
+  lauch(Dispatchers.IO) {
+    println("launch(Dispatchers.Default) - ")
+  }
+  
+  newSingleThreadContext("MyOwnThread").use {
+    launch(it){
+      println("newSingleThreadContext - ")
+    }
+  }
+}
+```
+
 - tip
 ```kotlin  
 fun <T>println(msg: T) {
