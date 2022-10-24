@@ -21,6 +21,11 @@ fun main() {
   Thread.sleep(2000L)
   //job.join()
 }
+
+fun <T>println(msg: T) {
+  println("$msg [${Thread.currentThread().name}] ")
+  //kotlin.io.println("$msg [${Thread.currentThread().name}] ")
+}
 ```
 
 - Scope builder and concurrency  
