@@ -15,4 +15,22 @@
 
 ## 이론
 - 개념: coroutine은 multiple entry/exit point  
-- Basically, coroutines are computations that can be suspended without blocking a thread  
+- 공식: Basically, coroutines are computations that can be suspended without blocking a thread  
+- A coroutine is a sequence of computations,
+  each of which may be suspended(or paused) and resulmed at some point,
+  without blocking the thread that executes it.
+  
+- block의 의미: blocking io api call을 했을 때, (readline, fscanf 등등... )
+               하지만, CPU-intensive computation (CPU-bound task)
+
+blocking IO
+```
+fun BufferedReader.readMessage(): Message? =
+  readLine()?.parseMessage()
+```
+
+CPU-intensive
+```
+fun findBigPrime(): BigInteger =
+  BigInteger.probablePrime(4096, Random())
+```
