@@ -165,7 +165,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 ```
 
-2. Concurrent using async  
+2. Concurrent using async ( 순차적으로 실행 or 동시 실행등을 제어 할 수 있음 )   
 ```kotlin
 val time = measureTimeMillis {
     val one = async { doSomethingUsefulOne() }
