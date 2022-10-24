@@ -10,6 +10,25 @@ fun main() {
   
   println("Hello")
   Thread.sleep(2000L)
+  //job.join()
+}
+```
+
+- structured concurrency  
+```kotlin
+fun main() = runBlocking {
+
+  launch {
+    delay(1000L)
+    println("World1!")
+  }
+  
+  launch {
+    delay(1000L)
+    println("World2!")
+  }
+  
+  println("Hello")
 }
 ```
 
