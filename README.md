@@ -71,6 +71,7 @@ val job = launch(Dispatchers.Default) {
             // print a message twice a second
             println("job: I'm sleeping $i ...")
             delay(500) 
+            //yield()
         } catch (e: Exception) {
             // log the exception
             println(e)
