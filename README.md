@@ -9,7 +9,7 @@ dispathcer
 
 ## [Coroutines Basic](https://kotlinlang.org/docs/coroutines-basics.html#table-of-contents)  
 
-- basic code ( But **GlobalScope** not recommend )
+- basic code ( But **GlobalScope** is not recommend )
 ```kotlin
 fun main() {
   val job = GlobalScope.launch{
