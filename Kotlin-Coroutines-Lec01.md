@@ -153,6 +153,7 @@ suspend fun <T> retryIO(block: suspend () -> T): T {
 ## Coroutine 사용방법  
 
 ### CorountineScope  
+**Coroutine** Builder를 호출하기 위한 것!!
 -> 아무데서나 호출할 수 없고, 약간의 제약사항(CoroutineScope)이 있다.  
    즉 postItem이 아니라 CoroutineScope.postItem 처럼 extention function에서 호출해야 한다.   
 
@@ -173,12 +174,14 @@ scope.launch {
 일반적인 regular 함수에서는 suspend function 을 부를 수 없다!  
 -> suspend 함수는 suspend 함수, regular function 을 부를 수 있다.  
 
-regular 함수에서 suspend function을 부르기 위해서는
-coroutine builder를 통해서 부른다.
 
-- **lanuch**       : to fire and forget, 니가 알아서 해
-- **async**        : to get a result asynchronously, 결과값 활용하고 싶을 때 
-- **runBlocking**  : block the current thread
+### Coroutine Builder  
+regular 함수에서 suspend function을 부르기 위해서는
+coroutine builder를 통해서 부른다. ( CoroutineScope의 extention으로 되어 있음)
+
+- **lanuch**       : to fire and forget, **니가 알아서 해**
+- **async**        : to get a result asynchronously, **결과값 활용하고 싶을 때** 
+- **runBlocking**  : block the current thread **부모역할**
 
 
 ### launch (니가알아서 해, Dispatchers.Default, Default thread pool에 있는 녀석들을 사용할 때)  
@@ -249,6 +252,7 @@ suspend fun loadAndCombine(name1: String, name2: String): Image {
 ```
 
 ### launch & sync
+lambda with recieve 형태ㅣ
 ```kotlin
 fun CoroutineScope.launch(
   …
@@ -274,6 +278,33 @@ scope.launch{
     }
   }
 }
+```
+
+### runBlocking ( **부모역할**, top level coroutine)  
+기본형  
+```kotlin
+fun <T> runBlocking(
+  context: CoroutineContext = …,
+  block: suspend CoroutineScope.() -> T
+): T
+```
+
+주로 main에서 사용한다. 
+일반적인 코드에서는 잘 사용하지 않는다.
+```kotlin
+fun main() {
+  println("Hello,")
+  // Create a coroutine, and block the main thread until it completes
+  runBlocking {
+    delay(2000L) // suspends the current coroutine for 2 seconds
+  }
+  println("World!") // will be executed after 2 seconds
+}
+```
+
+전체가 top-level coroutine에서 사용 할 때 쓴다
+```kotlin
+
 ```
 
 ### Dispatcher  
