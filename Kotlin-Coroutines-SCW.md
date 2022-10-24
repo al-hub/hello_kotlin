@@ -232,10 +232,12 @@ fun main() {
 - structured concurrency 형태로 하라!!
 ```kotlin
 fun main() == runBlocking<Unit>{
+
   val time = measureTimeMillis {
       println("The answer is ${concurrentSum()}")
   }
   println("Completed in $time ms")
+  
 }
 
 suspend fun concurrentSum(): Int = coroutineScope {
