@@ -60,7 +60,7 @@ fun loadData() {
 ### Async  
 with coroutines
 
-```
+```kotlin
 suspend fun loadData() {
   val data = networkReuest()
   show(data)
@@ -73,7 +73,7 @@ suspend fun newworkRequest(): Data =
 ```
 
 Continuations
-
+```
 
                 .Main  
 Dispatchers     .IO  
@@ -83,7 +83,7 @@ Dispatchers     .IO
 UI/Non-blocking .Main  
 Netwrok & Disk  .IO  
            CPU  .Default  
-
+```
 
 ## Structured Concurrency  
 
