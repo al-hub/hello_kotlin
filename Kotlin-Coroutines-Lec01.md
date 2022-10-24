@@ -127,3 +127,95 @@ suspend fun postItem(item: Item) {
   - regular higher-order function (foreach, let, apply, let, also, repeat, filter, map, use)  
 
 
+higher-order function ( 함수를 인자로 사용 시 ) 
+```
+suspend fun createPost(token: Token, item: Item): Post {…}
+
+val post = retryIO {
+  createPost(token, item)
+}
+
+suspend fun <T> retryIO(block: suspend () -> T): T {
+  var backOffTime = 1000L // start with 1 sec
+  while (true) {
+    try {
+      return block()
+    } catch (e: IOException) {
+       e.printStackTrace() // log the error
+   }
+    delay(backOffTime)
+    backOffTime = minOf(backOffTime * 2, 60_000L)
+  }
+}
+```
+
+## Calling Suspending Functions
+일반적인 regular 함수에서는 suspend function 을 부를 수 없다!
+-> suspend 함수는 suspend 함수, regular function 을 부를 수 있다.
+
+
+regular 함수에서 suspend function을 부르기 위해서는
+coroutine builder를 통해서 부른다.
+
+- lanuch       : to fire and forget, 니가 알아서 해
+- async        : to get a result asynchronously, 결과값 활용하고 싶을 때 
+- runBlocking  : block the current thread
+
+### launch (Dispatchers.Default, Default thread pool에 있는 녀석들을 사용할 때)  
+```
+fun CoroutineScope.postItem(item: Item) {
+  launch {
+    val token = requestToken()
+    val post = createPost(token, item)
+    showPost(post)
+  }
+}
+```
+-> 일반함수인 postItem에서 corountine builder(launch)에 의해서 suspend 함수를 호출하고 있다.  
+   사실 launch 도 아무대서나 호출할 수 없고, 약간의 제약사항(CoroutineScope)이 있다.  
+   즉 postItem이 아니라 CoroutineScope.postItem 처럼 extention function에서 호출한다.    
+
+다른 호출방법 CorountineScope  
+```
+val scope = CoroutineScope(Job())
+scope.launch {
+  println("Hello, I am coroutine")
+}
+```
+
+- ready-made scope  
+  - lifecycleScope  
+  - viewModelScope  
+  - GlobalScope ( not recommand )
+
+- Dispatcher  
+  - Main - UI/Non-blocking
+  - Default - CPU
+  - IO - network/disk
+
+
+extension function 사용하는 예시
+```
+fun CoroutineScope.launch(
+  context: CoroutineContext = EmptyCoroutineContext,
+  start: CoroutineStart = CoroutineStart.DEFAULT,
+  block: suspend CoroutineScope.() -> Unit
+): Job { … }
+```
+중요, block은 새로 생성된 coroutine function .() extenstion lambda 함수 
+Job: 생성된 coroutine에 대한 handle ( job을 이용해서 controll 할  수 있다. )
+
+job.cancel()   // cancel the job
+job.join()     // wait for job, completion (마치 fork join 하듯이 )
+
+
+**[Don't do this](https://elizarov.medium.com/the-reason-to-avoid-globalscope-835337445abc)**
+```kotlin
+fun postItem(item: Item) {
+  GlobalScope.launch {
+    val token = requestToken()
+    val post = createPost(token, item)
+    showPost(post)
+  }
+}
+```
