@@ -1,4 +1,4 @@
-# Kotlin coroutines (2022-10-24)  
+# Kotlin Coroutines (2022-10-24)  
 
 - Coroutine 테스트 시, MockK 권고 (Mockito 도 가능은 함)  
   - JUnit도 사용  
