@@ -23,7 +23,7 @@ fun main() {
 }
 ```
 
--. Scope builder and concurrency  
+- Scope builder and concurrency  
 ```kotlin
 // Sequentially executes doWorld followed by "Done"
 fun main() = runBlocking {
@@ -45,7 +45,7 @@ suspend fun doWorld() = coroutineScope { // this: CoroutineScope
 }
 ```
 
--. Coroutines are light-weight  
+- Coroutines are light-weight  
 ```kotlin
 import kotlinx.coroutines.*
 
