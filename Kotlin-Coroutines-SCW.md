@@ -293,3 +293,8 @@ fun <T>println(msg: T) {
   kotlin.io.println("$msg [${Thread.currentThread().name}] ")
 }
 ```
+
+
+```kotlin
+fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+```
