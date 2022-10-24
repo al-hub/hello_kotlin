@@ -12,6 +12,9 @@
 
 - The Art of computer Programming (읽지않는(?) 필수책)  
 
+- category theory 를 공부해둬야 한다. (언제 어떻게 적용하는지 알면 java, android 등 여러군데에서 쓰인다.)    
+flatmap, map  
+
 
 ## 이론
 - 개념: coroutine은 multiple entry/exit point  
@@ -47,4 +50,80 @@ block된 main thread는 다른 일을 하면 된다. 그런데 누군가는 susp
 ```kotlin
 suspend fun createPost(token: Token, item: Item): Post {...}
 ```
-주의, suspend 만 붙인다고 되는것은 아님!
+주의, suspend 만 붙인다고 되는것은 아님! ( 예제 해보기 !!)
+
+## Asynchronous
+- callbacks, future/promise/rx, coroutines  
+- 복잡하다.
+  - Race Conditions, Back Pressure, Leaked Resources ...
+
+Sync vs Async
+
+block style
+```
+fun postItem(item: Item) {
+  val token = requestToken()
+  val post =  createPost(token, item)
+  showPost(post)
+}
+```
+
+non-block style (callback) : 자칫하면 callback hell (exception handling 어렵다)  
+```
+fun postItem(item: Item) {
+  requestToken() { token -> 
+      createPost(token, item) { post ->
+          showPost(post)
+      }
+  }  
+}
+```
+
+non-block style (promise/future)  
+```
+fun postItem(item: Item) {
+    requestToKen()
+      .thenCompose { token ->
+            createPost(token, item) }
+      .thenAccept { post ->
+            showPost(post)  }
+}
+```
+
+non-block style (RxJava) : operator가 복잡하다.
+```
+fun requestToken(): Single<Token>
+fun createPost(token: Token, item: Item): Single<Post>
+fun showPost(post: Post)
+fun postItem(item: Item) {
+    requestToken()
+        .flatMap { token ->
+            createPost(token, item)
+        }
+        .subscribeOn(Schedulers.io())
+        .observerOn(AndroidSchedulers.mainThread())
+        .subscribe { post ->
+            showPost(post)
+        }
+}
+
+```
+
+non-block style (Coroutine) , direct style
+```
+suspend fun postItem(item: Item) {
+  val token = requestToken()
+  val post = createPost(token, item)
+  showPost(post)
+}
+```
+주의, suspend 만 붙인다고 되는것은 아님!  
+(body안에 suspend func 이 있어야 함)
+
+
+- 장점들
+  - regular loop
+  - regular exception handling
+  - regular higher-order function (foreach, let, apply, let, also, repeat, filter, map, use)  
+
+
