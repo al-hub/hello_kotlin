@@ -50,7 +50,7 @@ block된 main thread는 다른 일을 하면 된다. 그런데 누군가는 susp
 ```kotlin
 suspend fun createPost(token: Token, item: Item): Post {...}
 ```
-주의, suspend 만 붙인다고 되는것은 아님! ( 예제 해보기 !!)
+**<span style="color:red">주의</span>**, suspend 만 붙인다고 되는것은 아님! ( 예제 해보기 !!)
 
 ## Asynchronous
 - callbacks, future/promise/rx, coroutines  
@@ -117,7 +117,7 @@ suspend fun postItem(item: Item) {
   showPost(post)
 }
 ```
-주의, suspend 만 붙인다고 되는것은 아님!  
+**<span style="color:red">주의</span>**, suspend 만 붙인다고 되는것은 아님!  
 (body안에 suspend func 이 있어야 함)
 
 
