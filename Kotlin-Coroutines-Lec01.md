@@ -27,13 +27,13 @@ flatmap, map
                하지만, CPU-intensive computation (CPU-bound task)
 
 blocking IO
-```
+```kotlin
 fun BufferedReader.readMessage(): Message? =
   readLine()?.parseMessage()
 ```
 
 CPU-intensive
-```
+```kotlin
 fun findBigPrime(): BigInteger =
   BigInteger.probablePrime(4096, Random())
 ```
@@ -60,7 +60,7 @@ suspend fun createPost(token: Token, item: Item): Post {...}
 ## Sync vs Async
 
 block style
-```
+```kotlin
 fun postItem(item: Item) {
   val token = requestToken()
   val post =  createPost(token, item)
@@ -69,7 +69,7 @@ fun postItem(item: Item) {
 ```
 
 non-block style (callback) : 자칫하면 callback hell (exception handling 어렵다)  
-```
+```kotlin
 fun postItem(item: Item) {
   requestToken() { token -> 
       createPost(token, item) { post ->
@@ -80,7 +80,7 @@ fun postItem(item: Item) {
 ```
 
 non-block style (promise/future)  
-```
+```kotlin
 fun postItem(item: Item) {
     requestToKen()
       .thenCompose { token ->
@@ -91,7 +91,7 @@ fun postItem(item: Item) {
 ```
 
 non-block style (RxJava) : operator가 복잡하다.
-```
+```kotlin
 fun requestToken(): Single<Token>
 fun createPost(token: Token, item: Item): Single<Post>
 fun showPost(post: Post)
@@ -110,7 +110,7 @@ fun postItem(item: Item) {
 ```
 
 non-block style (Coroutine) , direct style 즉 non-block 안에서는 sequencial 한 코드 유지가 가능하다!
-```
+```kotlin
 suspend fun postItem(item: Item) {
   val token = requestToken()
   val post = createPost(token, item)
@@ -128,7 +128,7 @@ suspend fun postItem(item: Item) {
 
 
 higher-order function ( 함수를 인자로 사용 시 ) 
-```
+```kotlin
 suspend fun createPost(token: Token, item: Item): Post {…}
 
 val post = retryIO {
@@ -162,7 +162,7 @@ coroutine builder를 통해서 부른다.
 - runBlocking  : block the current thread
 
 ### launch (니가알아서 해, Dispatchers.Default, Default thread pool에 있는 녀석들을 사용할 때)  
-```
+```kotlin
 fun CoroutineScope.postItem(item: Item) {
   launch {
     val token = requestToken()
@@ -176,7 +176,7 @@ fun CoroutineScope.postItem(item: Item) {
    즉 postItem이 아니라 CoroutineScope.postItem 처럼 extention function에서 호출한다.    
 
 다른 호출방법 CorountineScope  
-```
+```kotlin
 val scope = CoroutineScope(Job())
 scope.launch {
   println("Hello, I am coroutine")
@@ -195,7 +195,7 @@ scope.launch {
 
 
 extension function 사용하는 예시
-```
+```kotlin
 fun CoroutineScope.launch(
   context: CoroutineContext = EmptyCoroutineContext,
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -233,7 +233,7 @@ suspend fun loadAndCombine(name1: String, name2: String): Image =
 ```
 Deferred -> future 데... ㅎ    
   
-```
+```kotlin
 fun <T> CoroutineScope.async(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -242,7 +242,7 @@ fun <T> CoroutineScope.async(
 ```
 
 요것도 **Don't do this**  
-```
+```kotlin
 suspend fun loadAndCombine(name1: String, name2: String): Image {
   val deferred1 = GlobalScope.async { loadImage(name1) }
   val deferred2 = GlobalScope.async { loadImage(name2) }
