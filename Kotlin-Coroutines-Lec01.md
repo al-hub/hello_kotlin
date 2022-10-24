@@ -200,11 +200,11 @@ fun CoroutineScope.launch(
   block: suspend CoroutineScope.() -> Unit
 ): Job { … }
 ```
-중요, block은 새로 생성된 coroutine function .() extenstion lambda 함수 
-Job: 생성된 coroutine에 대한 handle ( job을 이용해서 controll 할  수 있다. )
+중요, block은 새로 생성된 coroutine function .() extenstion lambda 함수  
+Job: 생성된 coroutine에 대한 handle ( job을 이용해서 controll 할  수 있다. )  
 
-job.cancel()   // cancel the job
-job.join()     // wait for job, completion (마치 fork join 하듯이 )
+job.cancel()   // cancel the job  
+job.join()     // wait for job, completion (마치 fork join 하듯이 )  
 
 
 **[Don't do this](https://elizarov.medium.com/the-reason-to-avoid-globalscope-835337445abc)**
