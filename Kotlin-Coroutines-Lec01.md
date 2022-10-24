@@ -57,7 +57,7 @@ suspend fun createPost(token: Token, item: Item): Post {...}
 - 복잡하다.
   - Race Conditions, Back Pressure, Leaked Resources ...
 
-Sync vs Async
+## Sync vs Async
 
 block style
 ```
