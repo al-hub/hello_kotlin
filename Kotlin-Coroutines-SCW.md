@@ -74,23 +74,27 @@ Cancellation is cooperative (취소되기 위해서는 협조적이여 한다)
 
 1. suspend func (delay or yield)  
 ```kotlin
-val job = launch(Dispatchers.Default) {
-    repeat(5) { i ->
-        try {
-            // print a message twice a second
-            println("job: I'm sleeping $i ...")
-            delay(500) 
-            //yield()
-        } catch (e: Exception) {
-            // log the exception
-            println(e)
-        }
-    }
+fun main() = runBlocking {
+
+  val job = launch(Dispatchers.Default) {
+      repeat(5) { i ->
+          try {
+              // print a message twice a second
+              println("job: I'm sleeping $i ...")
+              delay(500) 
+              //yield()
+          } catch (e: Exception) {
+              // log the exception
+              println(e)
+          }
+      }
+  }
+  delay(1300L) // delay a bit
+  println("main: I'm tired of waiting!")
+  job.cancelAndJoin() // cancels the job and waits for its completion
+  println("main: Now I can quit.")
+
 }
-delay(1300L) // delay a bit
-println("main: I'm tired of waiting!")
-job.cancelAndJoin() // cancels the job and waits for its completion
-println("main: Now I can quit.")
 ```
 
 2. Making computation code cancellable (isActive)  
