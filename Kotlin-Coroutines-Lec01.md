@@ -149,17 +149,37 @@ suspend fun <T> retryIO(block: suspend () -> T): T {
 }
 ```
 
-## Calling Suspending Functions
-일반적인 regular 함수에서는 suspend function 을 부를 수 없다!
--> suspend 함수는 suspend 함수, regular function 을 부를 수 있다.
 
+## Coroutine 사용방법  
+
+### CorountineScope  
+-> 아무데서나 호출할 수 없고, 약간의 제약사항(CoroutineScope)이 있다.  
+   즉 postItem이 아니라 CoroutineScope.postItem 처럼 extention function에서 호출해야 한다.   
+
+```kotlin
+val scope = CoroutineScope(Job())
+scope.launch {
+  println("Hello, I am coroutine")
+}
+```
+
+- ready-made scope  
+  - lifecycleScope  
+  - viewModelScope  
+  - GlobalScope ( **not recommend** )  
+
+
+### Calling Suspending Functions  
+일반적인 regular 함수에서는 suspend function 을 부를 수 없다!  
+-> suspend 함수는 suspend 함수, regular function 을 부를 수 있다.  
 
 regular 함수에서 suspend function을 부르기 위해서는
 coroutine builder를 통해서 부른다.
 
-- lanuch       : to fire and forget, 니가 알아서 해
-- async        : to get a result asynchronously, 결과값 활용하고 싶을 때 
-- runBlocking  : block the current thread
+- **lanuch**       : to fire and forget, 니가 알아서 해
+- **async**        : to get a result asynchronously, 결과값 활용하고 싶을 때 
+- **runBlocking**  : block the current thread
+
 
 ### launch (니가알아서 해, Dispatchers.Default, Default thread pool에 있는 녀석들을 사용할 때)  
 ```kotlin
@@ -171,28 +191,6 @@ fun CoroutineScope.postItem(item: Item) {
   }
 }
 ```
--> 일반함수인 postItem에서 corountine builder(launch)에 의해서 suspend 함수를 호출하고 있다.  
-   사실 launch 도 아무대서나 호출할 수 없고, 약간의 제약사항(CoroutineScope)이 있다.  
-   즉 postItem이 아니라 CoroutineScope.postItem 처럼 extention function에서 호출한다.    
-
-다른 호출방법 CorountineScope  
-```kotlin
-val scope = CoroutineScope(Job())
-scope.launch {
-  println("Hello, I am coroutine")
-}
-```
-
-- ready-made scope  
-  - lifecycleScope  
-  - viewModelScope  
-  - GlobalScope ( **not recommend** )
-
-- Dispatcher  
-  - Main - UI/Non-blocking
-  - Default - CPU
-  - IO - network/disk
-
 
 extension function 사용하는 예시
 ```kotlin
@@ -277,3 +275,9 @@ scope.launch{
   }
 }
 ```
+
+### Dispatcher  
+- Main - UI/Non-blocking
+- Default - CPU
+- IO - network/disk
+
