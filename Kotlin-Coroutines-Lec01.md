@@ -34,3 +34,16 @@ CPU-intensive
 fun findBigPrime(): BigInteger =
   BigInteger.probablePrime(4096, Random())
 ```
+
+- blocking code 부분이 어떻게 실행되는가?  
+임의의 thread T가 살행한다고 생각해보자.  
+coroutine body가 실행된다고 할 때, 본이 직접 실행하다가, suspend point를 만나면,  
+block된 main thread는 다른 일을 하면 된다. 그런데 누군가는 suspend를 해 줘야하는데, background thread가 suspend된 task를 받아서 실행한다.  
+완료되면 main thread에게 돌려준다. 완료가 되면 실행시키고 다시 suspend point를 만나면 background thread 중에 하나를 시킨다.  
+즉, main thread는 block 된적이 없다. -> non-blocking suspend computation이라 부를 수 있다.  
+(필요하다면 background thread에게 시키지 않고, main thread에게 시킬 수 도 있다.)  
+
+자 코드로 해 보자!! explicit하게 표현해줘야 한다. (suspending function)    
+```kotlin
+suspend fun createPost(token: Token, item: Item): Post {...}
+```
