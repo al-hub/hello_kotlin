@@ -128,7 +128,7 @@ class ExampleClass {
 ```
 
 supervisorScope vs coroutineScope
-```
+```kotlin
 class ExampleRepositoiry{
   suspend fun doSomething() {
     // run task in parallel
@@ -142,7 +142,7 @@ class ExampleRepositoiry{
 
 ```
 
-```
+```kotlin
 class ExampleRepositoiry{
   suspend fun doSomething() {
     // run task in parallel
