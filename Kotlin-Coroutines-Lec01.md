@@ -47,3 +47,4 @@ block된 main thread는 다른 일을 하면 된다. 그런데 누군가는 susp
 ```kotlin
 suspend fun createPost(token: Token, item: Item): Post {...}
 ```
+주의, suspend 만 붙인다고 되는것은 아님!
