@@ -1,7 +1,7 @@
 
 ## Coroutine
 
--. CoroutineScope  
+- CoroutineScope  
 
 ```kotlin
 clas ExampleClass {
