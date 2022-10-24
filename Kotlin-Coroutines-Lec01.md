@@ -109,7 +109,7 @@ fun postItem(item: Item) {
 
 ```
 
-non-block style (Coroutine) , direct style
+non-block style (Coroutine) , direct style 즉 non-block 안에서는 sequencial 한 코드 유지가 가능하다!
 ```
 suspend fun postItem(item: Item) {
   val token = requestToken()
