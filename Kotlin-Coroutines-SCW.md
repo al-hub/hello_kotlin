@@ -12,11 +12,6 @@ fun main() {
   Thread.sleep(2000L)
   //job.join()
 }
-
-fun <T>println(msg: T) {
-  println("$msg [${Thread.currentThread().name}] ")
-  //kotlin.io.println("$msg [${Thread.currentThread().name}] ")
-}
 ```
 
 - Scope builder and concurrency  
@@ -232,5 +227,13 @@ suspend fun doSomethingUsefulOne(): Int {
 suspend fun doSomethingUsefulTwo(): Int {
     delay(1000L) // pretend we are doing something useful here, too
     return 29
+}
+```
+
+- tip
+```kotlin  
+fun <T>println(msg: T) {
+  println("$msg [${Thread.currentThread().name}] ")
+  //kotlin.io.println("$msg [${Thread.currentThread().name}] ")
 }
 ```
