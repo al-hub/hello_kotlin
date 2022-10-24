@@ -31,7 +31,7 @@ class ExampleClass {
 }
 ```
 
-### Android Calss (ktx, ViewModelScope, lifecycleScope)   
+### Android Class (ktx, ViewModelScope, lifecycleScope)   
 ```kotlin
 class ExampleViewModel : ViewModel() {
 
