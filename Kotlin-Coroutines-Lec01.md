@@ -161,7 +161,7 @@ coroutine builder를 통해서 부른다.
 - async        : to get a result asynchronously, 결과값 활용하고 싶을 때 
 - runBlocking  : block the current thread
 
-### launch (Dispatchers.Default, Default thread pool에 있는 녀석들을 사용할 때)  
+### launch (니가알아서 해, Dispatchers.Default, Default thread pool에 있는 녀석들을 사용할 때)  
 ```
 fun CoroutineScope.postItem(item: Item) {
   launch {
@@ -216,6 +216,64 @@ fun postItem(item: Item) {
     val token = requestToken()
     val post = createPost(token, item)
     showPost(post)
+  }
+}
+```
+
+
+### async/await (결과를 활용해야 해)  
+```kotlin
+suspend fun loadAndCombine(name1: String, name2: String): Image =
+  coroutineScope {
+    val deferred1: Deferred<Image> = async { loadImage(name1) }
+    val deferred2: Deferred<Image> = async { loadImage(name2) }
+    combineImages(deferred1.await(), deferred2.await())
+  }
+  
+```
+Deferred -> future 데... ㅎ    
+  
+```
+fun <T> CoroutineScope.async(
+    context: CoroutineContext = EmptyCoroutineContext,
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    block: suspend CoroutineScope.() -> T
+): Deferred<T> 
+```
+
+요것도 **Don't do this**  
+```
+suspend fun loadAndCombine(name1: String, name2: String): Image {
+  val deferred1 = GlobalScope.async { loadImage(name1) }
+  val deferred2 = GlobalScope.async { loadImage(name2) }
+  return combineImages(deferred1.await(), deferred2.await())
+}
+```
+
+### launch & sync
+```kotlin
+fun CoroutineScope.launch(
+  …
+  block: suspend CoroutineScope.() -> Unit
+): Job { … }
+
+```
+```kotlin
+fun <T> CoroutineScope.async(
+  …
+  block: suspend CoroutineScope.() -> T
+): Deferred<T>
+``
+-> Coroutine body안에서 parent-child 구조를 만들기 위해서!!
+
+이런게 가능하다!!(Coroutines from a hierarchy, Concurrency의 lifecycle Management 할 때, 가능하다!!)  
+parent-child relationship  
+```
+scope.launch{
+  launch{
+    launch{
+      launch { }
+    }
   }
 }
 ```
