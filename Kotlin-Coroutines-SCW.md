@@ -10,7 +10,6 @@ fun main() {
   
   println("Hello")
   Thread.sleep(2000L)
-  //job.join()
 }
 ```
 
