@@ -186,7 +186,7 @@ scope.launch {
 - ready-made scope  
   - lifecycleScope  
   - viewModelScope  
-  - GlobalScope ( not recommand )
+  - GlobalScope ( **not recommand** )
 
 - Dispatcher  
   - Main - UI/Non-blocking
