@@ -289,7 +289,7 @@ fun main() = runBlocking<Unit> {
 - tip
 ```kotlin  
 fun <T>println(msg: T) {
-  println("$msg [${Thread.currentThread().name}] ")
-  //kotlin.io.println("$msg [${Thread.currentThread().name}] ")
+  //println("$msg [${Thread.currentThread().name}] ")
+  kotlin.io.println("$msg [${Thread.currentThread().name}] ")
 }
 ```
