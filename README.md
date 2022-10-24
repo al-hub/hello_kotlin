@@ -12,13 +12,14 @@ dispathcer
 basic code
 ```kotlin
 fun main() {
-  GlobalScope.launch{
+  val job = GlobalScope.launch{
     delay(1000L)
     println("World!)
   }
   
   println("Hello")
   Thread.sleep(2000L)
+  //job.join()
 }
 ```
 
