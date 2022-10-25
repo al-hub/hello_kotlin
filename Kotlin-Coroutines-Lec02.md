@@ -26,7 +26,7 @@ fun main() {
 }
 ```
 
-thread: 136615 ms
+thread: 437 ms
 ```kotlin
 fun main() = runBlocking{
   repeat(200_000) {
