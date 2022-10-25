@@ -402,7 +402,7 @@ suspend fun loadAndCombine(
 }
 ```
 
-- Structured Concurrency  
+- Structured Concurrency 요약  
   - must be started in a logical scope  
   - same scope form a hierarchy  
   - A parent job won't complete until all its children have completed  
