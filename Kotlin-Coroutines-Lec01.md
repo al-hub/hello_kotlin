@@ -5,15 +5,10 @@
   - LiveData (java에서 ViewModel - View 사이에 safe한 관리를 위해 사용): kotlin에서는 kotlin flow가 사용  
   - Reactive Stream, RxJava, RxKotlin
 
-- stop 느낌
-- 기차길 느낌
-- Trampoline느낌, flatmap: list of list를 하나의 list로 펼칠 때 -> controller를 줬다 받았다 하면서 진행
-- Generators
-
-- The Art of computer Programming (읽지않는(?) 필수책)  
-
-- category theory 를 공부해둬야 한다. (언제 어떻게 적용하는지 알면 java, android 등 여러군데에서 쓰인다.)    
-flatmap, map  
+- 느낌
+  - stop 느낌
+  - 기차길 느낌
+  - Trampoline느낌, flatmap: list of list를 하나의 list로 펼칠 때 -> controller를 줬다 받았다 하면서 진행
 
 - 디버깅설정: Edit configuration -> Edit configuration Template  
   \-Dkotlinx.coroutines.debug
@@ -28,6 +23,12 @@ fun CoroutineScope.onCompletion(name: String): CoroutineScope = apply {
     }
 }
 ```
+- 기타
+  - Generators
+  - The Art of computer Programming (읽지않는(?) 필수책)  
+  - category theory 를 공부해둬야 한다. (언제 어떻게 적용하는지 알면 java, android 등 여러군데에서 쓰인다.)    
+flatmap, map  
+
 
 ## 이론
 - 개념: coroutine은 multiple entry/exit point  
