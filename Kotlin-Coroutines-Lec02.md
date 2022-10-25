@@ -271,3 +271,35 @@ inheritance에 관련된 오해와 진실
 Scope Context ≠ Parent context  
 부모의 Scope Context + Additional Context -> Parent context 를 그대로 물려 받되, Child Job은 새로 생성 됨  
 즉, Child의 parent context는 parent context와 다를 수 있다  
+
+## supervisor job  
+```kotlin
+object Canceling_Parent_Cancels_All_Children {
+
+    @JvmStatic
+    fun main(args: Array<String>) = runBlocking {
+
+        // What if change to Job()
+        val scope = CoroutineScope(SupervisorJob())
+
+        val child1 = scope.launch {
+            log("child1 started")
+            delay(1000)
+            log("child1 done")
+        }.onCompletion("child 1")
+
+        val child2 = scope.launch {
+            log("child2 started")
+            delay(1000)
+            log("child2 done")
+        }.onCompletion("child 2")
+
+        delay(500)
+
+        scope.cancel()
+        joinAll(child1, child2)
+
+        log("is Parent scope cancelled? = ${TODO()}")
+    }
+}
+```
