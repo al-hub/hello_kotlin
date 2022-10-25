@@ -310,6 +310,8 @@ theadpool을 선택
     - Network IO, Disk IO, etc.
 - Dispatchers.Unconfined
     - Not recommended
+- Predefine 또는 Custom ( newSingleThreadContext ) 등 도 쓸 수 있다.  
+
 ```kotlin
 object DefaultDispatchers_Demo {
     @JvmStatic
