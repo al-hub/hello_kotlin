@@ -15,7 +15,7 @@
 - category theory 를 공부해둬야 한다. (언제 어떻게 적용하는지 알면 java, android 등 여러군데에서 쓰인다.)    
 flatmap, map  
 
-- Edit configuration -> Edit configuration Template  
+- 디버깅설정: Edit configuration -> Edit configuration Template  
   \-Dkotlinx.coroutines.debug
 
 ## 이론
