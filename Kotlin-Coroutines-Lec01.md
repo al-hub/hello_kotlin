@@ -326,3 +326,19 @@ fun main() {
 - Default - CPU
 - IO - network/disk
 
+
+### Coroutines from a hierarchy  
+```kotlin
+val scope = CoroutineScope(Job())
+val job1 = scope.launch {
+  launch { }
+  launch { }
+}
+val job2 = scope.launch {
+  launch { }
+  launch { }
+}
+joinAll(job1, job2) 
+```
+Root corountines은 top level coroutine 이나 그 역은 성립하지 않는다.  
+(exception 시, 고려가 필요함)  
