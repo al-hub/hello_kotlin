@@ -13,19 +13,20 @@
 - TIP)
   - 디버깅설정: Edit configuration -> Edit configuration Template  
     - \-Dkotlinx.coroutines.debug
+  - yield
+  - log("The parentJob has ${parentJob.children.count()} children")
+  - ${scope.coroutineContext.job.isCancelled}
   - coroutine 종료 시, builder에 callback method를 등록시켜 놓을 수 있다. 예시) .onCompletion("child1")  
 사전에 정의 해 놓고, 사용해야 함  
-  ```kotlin
+```kotlin
 // DO NOT APPLY LIKE THIS: CoroutineScope(Job()).onCompletion("scope"); use scope.completeStatus() instead!!
 fun CoroutineScope.onCompletion(name: String): CoroutineScope = apply {
     coroutineContext.job.invokeOnCompletion {
         log("$name: isCancelled = ${coroutineContext.job.isCancelled}, exception = ${it?.javaClass?.name}")
     }
 }
-  ```
-  - yield
-  - log("The parentJob has ${parentJob.children.count()} children")
-  - 
+```
+
   
 - 기타
   - Generatorse
