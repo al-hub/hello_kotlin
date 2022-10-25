@@ -14,6 +14,8 @@
     - threads는 100개 정도는 괜찮겠지만 100,000 정도면 die....
     - trehads MByte, coroutine kByte
   - (비슷하다)Empowered Runnable ( thread에 의해서 실행되는 코드 )
+    - 동일한 coroutine이 서로다른 thread에 의해서 실행될 수 도 있다!!  
+    - CPS (Continuation Passing Style)
 
 thread: 136615 ms
 ```kotlin
@@ -36,3 +38,10 @@ fun main() = runBlocking{
   }
 }
 ```
+
+## CPS (Continuation Passing Style)  
+It is a sequence of callbacks.  
+n kotlin, coroutine suspension/resume is implemented as a state machine.  
+
+
+
