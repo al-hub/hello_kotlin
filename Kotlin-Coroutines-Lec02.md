@@ -274,32 +274,25 @@ Scope Context ≠ Parent context
 
 ## supervisor job  
 ```kotlin
-object Canceling_Parent_Cancels_All_Children {
-
+object Standalone_SupervisorJob_Demo {
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
 
-        // What if change to Job()
-        val scope = CoroutineScope(SupervisorJob())
+        val supervisorJob = SupervisorJob()
 
-        val child1 = scope.launch {
-            log("child1 started")
+        val child1 = launch(supervisorJob) {
+            log("child1")
+            delay(500)
+            throw RuntimeException("Oops")
+        }.onCompletion("child1")
+
+        val child2 = launch(supervisorJob) {
+            log("child2")
             delay(1000)
-            log("child1 done")
-        }.onCompletion("child 1")
+        }.onCompletion("child2")
 
-        val child2 = scope.launch {
-            log("child2 started")
-            delay(1000)
-            log("child2 done")
-        }.onCompletion("child 2")
-
-        delay(500)
-
-        scope.cancel()
         joinAll(child1, child2)
-
-        log("is Parent scope cancelled? = ${TODO()}")
+        log("Done")
     }
 }
 ```
