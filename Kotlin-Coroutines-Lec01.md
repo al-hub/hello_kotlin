@@ -24,7 +24,7 @@ fun CoroutineScope.onCompletion(name: String): CoroutineScope = apply {
 }
 ```
 - 기타
-  - Generators
+  - Generatorse
   - The Art of computer Programming (읽지않는(?) 필수책)  
   - category theory 를 공부해둬야 한다. (언제 어떻게 적용하는지 알면 java, android 등 여러군데에서 쓰인다.)    
 flatmap, map  
@@ -402,16 +402,10 @@ suspend fun loadAndCombine(
 즉, 부모는 자식이 끝날때까지 기다려야한다.  
 ( The parent can for instance wait for it children to complete )  
 ( Or cancel all its children if an exception occurs in one of them. )  
-
+  
 <iframe width="640" height="360" src="https://www.thedevtavern.com/ed7d65ffa3b4a9a190a434939c236d50/Coroutines-job-failure-animation.mp4"  
  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
- 
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/MUQfKFzIOeU" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
-
+   
 - Structured Concurrency 요약  
   - must be started in a logical scope  
   - same scope form a hierarchy  
