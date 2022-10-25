@@ -93,3 +93,45 @@ Java/JVM 에서 ( CPS ) 로 바꾸면서, State Machine을 이용한다.
 ```java
 Object createPost(Token token, Item item, Continuation<Post> cont) { … }
 ```
+
+## CPS Transform   
+suspend - resume style  
+결론, suspend function 함수 body내에서 불리는 곳을 suspension points 라고 부른다고 할 수 있다.  
+```kotlin
+fun postItem(item: Item, completion: Continuation<Unit>): Any {
+    val token = requestToken()
+    val post = createPost(token, item)
+    completion.resume(showPost(post))
+}
+```
+
+suspension point는 label을 사용해서 각 state를 나타낼 수있다.
+```kotlin
+fun postItem(item: Item, completion: Continuation<Any?>) {
+    // Label 0 -> first execution
+    val token = requestToken()
+    // Label 1 -> resumes from requestToken
+    val post = createPost(token, item)
+    // Label 2 -> resumes from createPost
+    completion.resume(showPost(post))
+}
+```
+
+좀 더 realistic하게 표현한다면  
+```kotlin  
+fun postItem(item: Item, completion: Continuation<Any?>) {
+    when(label) {
+        0 -> { // Label 0 -> first execution
+            requestToken()
+        }
+        1 -> { // Label 1 -> resumes from requestToken
+            createPost(token, item)
+        }
+        2 -> { // Label 2 -> resumes from createPost
+            completion.resume(showPost(post))
+        }
+        else -> throw IllegalStateException(...)
+    }
+}
+
+```
