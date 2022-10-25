@@ -229,7 +229,7 @@ val job = scope.launch {
 }
 ```
 
-### [Job](https://medium.com/androiddevelopers/exceptions-in-coroutines-ce8da1ec060c)  
+## [Job](https://medium.com/androiddevelopers/exceptions-in-coroutines-ce8da1ec060c)  
 - A coroutine itself is represented by a Job  
 - Responsible for coroutine’s lifecycle, cancellation, and parent-child relations. 
 - Coroutine builders (launch or async) returns a Job instance that uniquely identifies the coroutine.  
