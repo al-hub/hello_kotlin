@@ -248,7 +248,7 @@ suspend fun loadAndCombine(name1: String, name2: String): Image =
 ```
 Deferred -> future 데... ㅎ    
 마지막 async의 마지막 부분이 return 값이다.  
-```kolin
+```kotlin
         val deferred = async {
             getUser("A001")
         }
