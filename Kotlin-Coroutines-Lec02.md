@@ -21,9 +21,9 @@ thread: 136615 ms
 ```kotlin
 fun main() {
   repeat(200_000) {
-  thread {
-  println("Hello thread $it")
-  }
+    thread {
+    println("Hello thread $it")
+    }
   }
 }
 ```
