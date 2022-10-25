@@ -339,6 +339,8 @@ val job2 = scope.launch {
   launch { }
 }
 joinAll(job1, job2) 
+//job1.join()
+//job2.join()
 ```
-Root corountines은 top level coroutine 이나 그 역은 성립하지 않는다.  
+Root corountines은 Top Level coroutine 이나 그 역은 성립하지 않는다.  
 (exception 시, 고려가 필요함)  
