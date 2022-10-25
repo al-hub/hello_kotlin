@@ -244,6 +244,7 @@ Scope Context ≠ Parent context
 부모의 Scope Context + Additional Context -> Parent context 를 그대로 물려 받되, Child Job은 새로 생성 됨  
 즉, Child의 parent context는 parent context와 다를 수 있다  
   
+https://youtu.be/w0kfnydnFWI
 
 ### CoroutineScope  
 - Every coroutine must be created inside the coroutine scope to control lifecycle.
