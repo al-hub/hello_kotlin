@@ -352,9 +352,8 @@ joinAll(job1, job2)
 Root corountines은 Top Level coroutine 이나 그 역은 성립하지 않는다.  
 (exception 시, 고려가 필요함)  
 
-
-### Structured Concurrency
-없던시절에는  
+### Structured Concurrency  
+(Kotlin 1.2.0)없던시절에는  
 ```kotlin
 suspend fun loadAndCombine(name1: String, name2: String): Image {
   val deferred1 = async { loadImage(name1) }
@@ -363,10 +362,10 @@ suspend fun loadAndCombine(name1: String, name2: String): Image {
 }
 ```
 부모자식관계가 성립하지 않게 됨 
-즉, 부모가 cancel되더라도 안되어 제대로 종료들이 안 됨  
-lifecycle management가 안됨 (unnecessary computation이 생기게 됨)  
+부모가 cancel되더라도 async들은 종료들이 안 됨  
+즉, lifecycle management가 안됨 (unnecessary computation이 생기게 됨)  
 
-workaround 방식으로  
+workaround 방식으로 coroutineContext이용,  
 ```kotlin
 suspend fun loadAndCombine(name1: String, name2: String): Image {
   val deferred1 = async(coroutineContext) { loadImage(name1) }
@@ -375,4 +374,18 @@ suspend fun loadAndCombine(name1: String, name2: String): Image {
 }
 
 ```
-여전히, 형제의 lifecycle 관리가 안 됨
+여전히, 형제의 lifecycle 관리가 안 됨  
+
+(Kotlin 1.3.0) Structured Concurrency 등장!!  
+```
+suspend fun loadAndCombine(name1: String, name2: String): Image {
+  coroutineScope {
+    val deferred1 = async { loadImage(name1) }
+    val deferred2 = async { loadImage(name2) }
+    return combineImages(deferred1.await(), deferred2.await())
+  }
+}
+```
+모든 coroutine은 Scope를 통해서 tree hierarchy를 가진다.  
+즉, 부모는 자식이 끝날때까지 기다려야한다.  
+( The parent can for instance wait for it children to complete )  
