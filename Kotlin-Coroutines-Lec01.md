@@ -377,7 +377,7 @@ suspend fun loadAndCombine(name1: String, name2: String): Image {
 여전히, 형제의 lifecycle 관리가 안 됨  
 
 (Kotlin 1.3.0) Structured Concurrency 등장!!  
-```
+```kotlin
 suspend fun loadAndCombine(name1: String, name2: String): Image {
   coroutineScope {
     val deferred1 = async { loadImage(name1) }
