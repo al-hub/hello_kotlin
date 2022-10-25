@@ -272,7 +272,8 @@ Scope Context ≠ Parent context
 부모의 Scope Context + Additional Context -> Parent context 를 그대로 물려 받되, Child Job은 새로 생성 됨  
 즉, Child의 parent context는 parent context와 다를 수 있다  
 
-## supervisor job  
+## SupervisorJob
+propagation 을 멈춘다.
 ```kotlin
 object Standalone_SupervisorJob_Demo {
     @JvmStatic
@@ -293,6 +294,34 @@ object Standalone_SupervisorJob_Demo {
 
         joinAll(child1, child2)
         log("Done")
+    }
+}
+```
+
+## Dispatchers  
+- Dispatchers.Default
+    - CPU-intensive computation
+- Dispatchers.Main
+    - UI events
+    - Need to include dependencies like Android, Swing, JavaFX, etc.
+- Dispatchers.IO ( default 64개 )
+    - Network IO, Disk IO, etc.
+- Dispatchers.Unconfined
+    - Not recommended
+```kotlin
+object DefaultDispatchers_Demo {
+    @JvmStatic
+    fun main(args: Array<String>) = runBlocking{
+        log("# processors = ${Runtime.getRuntime().availableProcessors()}")
+
+        repeat(20) {
+            launch(Dispatchers.Default) {
+                // To make it busy
+                List(1000) { Random.nextLong() }.maxOrNull()
+
+                log("Running on thread: ${Thread.currentThread().name}")
+            }
+        }
     }
 }
 ```
