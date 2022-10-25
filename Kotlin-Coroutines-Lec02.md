@@ -22,7 +22,7 @@ thread: 136615 ms
 fun main() {
   repeat(200_000) {
     thread {
-    println("Hello thread $it")
+      println("Hello thread $it")
     }
   }
 }
