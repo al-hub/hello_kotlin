@@ -40,8 +40,10 @@ fun main() = runBlocking{
 ```
 
 ## CPS (Continuation Passing Style)  
+(suspend)를 해주면, 내부적으로 CPS로 동작되도록 구성된다.  
+
 It is a sequence of callbacks.  
-n kotlin, coroutine suspension/resume is implemented as a state machine.  
+In kotlin, coroutine suspension/resume is implemented as a state machine.  
 
 classic  
 ```kotlin
