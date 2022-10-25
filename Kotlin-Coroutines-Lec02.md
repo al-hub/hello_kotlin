@@ -95,7 +95,8 @@ Object createPost(Token token, Item item, Continuation<Post> cont) { … }
 ```
 
 ## CPS Transform   
-suspend - resume style  
+coroutine이 kotline에서는 어떻게 구현하고 있을까?
+state machine과 labeld을 이용하여 suspend - resume style로 내부에서 구현하고 있다.  
 결론, suspend function 함수 body내에서 불리는 곳을 suspension points 라고 부른다고 할 수 있다.  
 ```kotlin
 fun postItem(item: Item, completion: Continuation<Unit>): Any {
