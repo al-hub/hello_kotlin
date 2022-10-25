@@ -398,6 +398,8 @@ suspend fun loadAndCombine(
   return combineImages(deferred1.await(), deferred2.await())
 }
 ```
+-> human error , try-catch의 이해가 어려울 있다.  
+
 모든 coroutine은 Scope를 통해서 tree hierarchy를 가진다.  
 즉, 부모는 자식이 끝날때까지 기다려야한다.  
 ( The parent can for instance wait for it children to complete )  
