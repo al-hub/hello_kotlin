@@ -405,7 +405,9 @@ suspend fun loadAndCombine(
   
 <iframe width="640" height="360" src="https://www.thedevtavern.com/ed7d65ffa3b4a9a190a434939c236d50/Coroutines-job-failure-animation.mp4"  
  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
-   
+  
+    
+    
 - Structured Concurrency 요약  
   - must be started in a logical scope  
   - same scope form a hierarchy  
