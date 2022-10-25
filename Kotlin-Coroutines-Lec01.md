@@ -14,8 +14,9 @@
   - 디버깅설정: Edit configuration -> Edit configuration Template  
     - \-Dkotlinx.coroutines.debug
   - yield
-  - log("The parentJob has ${parentJob.children.count()} children")
-  - ${scope.coroutineContext.job.isCancelled}
+  - val scope = CoroutineScope(Job() + CoroutineName("My Scope"))
+  - ${parentJob.children.count()}
+  - ${scope.coroutineContext.job.isActive}
   - coroutine 종료 시, builder에 callback method를 등록시켜 놓을 수 있다. 예시) .onCompletion("child1")  
 사전에 정의 해 놓고, 사용해야 함  
 ```kotlin
@@ -25,6 +26,8 @@ fun CoroutineScope.onCompletion(name: String): CoroutineScope = apply {
         log("$name: isCancelled = ${coroutineContext.job.isCancelled}, exception = ${it?.javaClass?.name}")
     }
 }
+
+
 ```
 
   
