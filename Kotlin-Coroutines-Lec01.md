@@ -10,10 +10,10 @@
   - 기차길 느낌
   - Trampoline느낌, flatmap: list of list를 하나의 list로 펼칠 때 -> controller를 줬다 받았다 하면서 진행
 
-- 디버깅설정: Edit configuration -> Edit configuration Template  
-  \-Dkotlinx.coroutines.debug
-  
-- coroutine 종료 시, builder에 callback method를 등록시켜 놓을 수 있다. 예시) .onCompletion("child1")  
+- TIP)
+  - 디버깅설정: Edit configuration -> Edit configuration Template  
+    - \-Dkotlinx.coroutines.debug
+  - coroutine 종료 시, builder에 callback method를 등록시켜 놓을 수 있다. 예시) .onCompletion("child1")  
 사전에 정의 해 놓고, 사용해야 함  
 ```kotlin
 // DO NOT APPLY LIKE THIS: CoroutineScope(Job()).onCompletion("scope"); use scope.completeStatus() instead!!
@@ -23,6 +23,10 @@ fun CoroutineScope.onCompletion(name: String): CoroutineScope = apply {
     }
 }
 ```
+  - yield
+  - log("The parentJob has ${parentJob.children.count()} children")
+  - 
+  
 - 기타
   - Generatorse
   - The Art of computer Programming (읽지않는(?) 필수책)  
