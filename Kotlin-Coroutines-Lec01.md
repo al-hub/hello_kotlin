@@ -353,7 +353,7 @@ Root corountines은 Top Level coroutine 이나 그 역은 성립하지 않는다
 (exception 시, 고려가 필요함)  
 
 ### Structured Concurrency  
-(Kotlin 1.2.0)없던시절에는  
+없던시절(Kotlin 1.2.0)에는  
 ```kotlin
 suspend fun loadAndCombine(name1: String, name2: String): Image {
   val deferred1 = async { loadImage(name1) }
