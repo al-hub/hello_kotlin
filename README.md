@@ -11,3 +11,8 @@ dispatcher
 - lanch, async, runBlocking  
 - job  
 - dispatcher  
+
+
+callback
+block, non-block
+sync , async
