@@ -43,5 +43,51 @@ fun main() = runBlocking{
 It is a sequence of callbacks.  
 n kotlin, coroutine suspension/resume is implemented as a state machine.  
 
+classic  
+```kotlin
+fun add(a: Int, b: Int): Int = a + b
+fun mult(a: Int, b: Int): Int = a * b
 
+fun doWork(): Int {
+    // label1
+    val step1 = add(3, 4)
+    // label2
+    val step2 = add(5, 6)
+    // label3
+    val step3 = mult(step1, step2)
+    return step3
+}
+```
 
+CPS (Continuation Passing Style)  
+```kotlin
+fun <R> addCPS(a: Int, b: Int, cont: (Int) -> R): R {
+    return cont(add(a, b))
+}
+fun <R> multCPS(a: Int, b: Int, cont: (Int) -> R): R {
+    return cont(mult(a, b))
+}
+
+fun doWorkCPS(): Int =
+    addCPS(3, 4) { step1 ->
+        addCPS(5, 6) { step2 ->
+            multCPS(step1, step2) { step3 ->
+                step3
+            }
+        }
+    }
+```
+
+CPS (Continuation Passing Style) + identity functin
+```kotlin
+```
+
+kolin (suspend)  
+```kolin
+suspend fun createPost(token: Token, item: Item): Post { … }
+```
+
+Java/JVM ( CPS )  
+```java
+Object createPost(Token token, Item item, Continuation<Post> cont) { … }
+```
