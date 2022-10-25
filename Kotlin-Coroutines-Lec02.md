@@ -299,6 +299,8 @@ object Standalone_SupervisorJob_Demo {
 ```
 
 ## Dispatchers  
+theadpool을 선택  
+
 - Dispatchers.Default
     - CPU-intensive computation
 - Dispatchers.Main
