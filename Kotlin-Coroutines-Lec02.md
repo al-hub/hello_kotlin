@@ -82,12 +82,12 @@ CPS (Continuation Passing Style) + identity functin
 ```kotlin
 ```
 
-kolin (suspend)  
+kotlin 에서 (suspend) 함수를 하면,  
 ```kolin
 suspend fun createPost(token: Token, item: Item): Post { … }
 ```
 
-Java/JVM ( CPS )  
+Java/JVM 에서 ( CPS ) 로 바꾸면서, State Machine을 이용한다.    
 ```java
 Object createPost(Token token, Item item, Continuation<Post> cont) { … }
 ```
