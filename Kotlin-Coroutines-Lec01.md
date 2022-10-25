@@ -403,11 +403,7 @@ suspend fun loadAndCombine(
 ( The parent can for instance wait for it children to complete )  
 ( Or cancel all its children if an exception occurs in one of them. )  
   
-<iframe width="640" height="360" src="https://www.thedevtavern.com/ed7d65ffa3b4a9a190a434939c236d50/Coroutines-job-failure-animation.mp4"  
- frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
   
-    
-    
 - Structured Concurrency 요약  
   - must be started in a logical scope  
   - same scope form a hierarchy  
@@ -417,3 +413,6 @@ suspend fun loadAndCombine(
   - (Exception)Failure of a child cancels the parent and all of its siblings. 
     ( 전파를 멈추려면, hirerachy 상에 SupervisorJob 을 쓰면 된다. )
     
+    
+<iframe width="640" height="360" src="https://www.thedevtavern.com/ed7d65ffa3b4a9a190a434939c236d50/Coroutines-job-failure-animation.mp4"  
+ frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
