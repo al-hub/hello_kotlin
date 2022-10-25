@@ -351,3 +351,28 @@ joinAll(job1, job2)
 ```
 Root corountines은 Top Level coroutine 이나 그 역은 성립하지 않는다.  
 (exception 시, 고려가 필요함)  
+
+
+### Structured Concurrency
+없던시절에는  
+```kotlin
+suspend fun loadAndCombine(name1: String, name2: String): Image {
+  val deferred1 = async { loadImage(name1) }
+  val deferred2 = async { loadImage(name2) }
+  return combineImages(deferred1.await(), deferred2.await())
+}
+```
+부모자식관계가 성립하지 않게 됨 
+즉, 부모가 cancel되더라도 안되어 제대로 종료들이 안 됨  
+lifecycle management가 안됨 (unnecessary computation이 생기게 됨)  
+
+workaround 방식으로  
+```kotlin
+suspend fun loadAndCombine(name1: String, name2: String): Image {
+  val deferred1 = async(coroutineContext) { loadImage(name1) }
+  val deferred2 = async(coroutineContext) { loadImage(name2) }
+  return combineImages(deferred1.await(), deferred2.await())
+}
+
+```
+여전히, 형제의 lifecycle 관리가 안 됨
