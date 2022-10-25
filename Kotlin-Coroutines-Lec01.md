@@ -271,6 +271,7 @@ suspend fun loadAndCombine(name1: String, name2: String): Image {
   return combineImages(deferred1.await(), deferred2.await())
 }
 ```
+이런방식은 Structured Concurrency를 위반하게 된다.  
 
 ### launch & sync
 lambda with recieve 형태ㅣ
