@@ -329,3 +329,39 @@ object DefaultDispatchers_Demo {
     }
 }
 ```
+
+Custom 방식  
+```kotlin
+@DelicateCoroutinesApi
+object Custom_Dispatchers_Demo {
+
+    @JvmStatic
+    fun main(args: Array<String>) = runBlocking<Unit> {
+
+        val context = newSingleThreadContext("CustomDispatcher 1")
+        launch(context) {
+            coroutineInfo(0)
+            delay(100)
+        }.join()
+        
+        //반듯이 close를 불러줘야 한다.
+        context.close() // make sure to close
+        
+        // Safe way: use를 쓰면 close를 알아서 불러준다.  
+        newSingleThreadContext("CustomDispatcher 2").use { ctx ->
+            launch(ctx) {
+                coroutineInfo(0)
+            }.join()
+        }
+
+        val context1 = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+        launch(context1) {
+            coroutineInfo(0)
+        }.join()
+        context1.close() // make sure to close
+
+        /* TODO */
+        // Use `use` to safely close the pool
+    }
+}
+```
