@@ -386,11 +386,6 @@ suspend fun loadAndCombine(name1: String, name2: String): Image {
   }
 }
 ```
-모든 coroutine은 Scope를 통해서 tree hierarchy를 가진다.  
-즉, 부모는 자식이 끝날때까지 기다려야한다.  
-( The parent can for instance wait for it children to complete )  
-( Or cancel all its children if an exception occurs in one of them. )  
-
 
 또는   
 ```kotlin
@@ -401,6 +396,11 @@ suspend fun loadAndCombine(
   return combineImages(deferred1.await(), deferred2.await())
 }
 ```
+모든 coroutine은 Scope를 통해서 tree hierarchy를 가진다.  
+즉, 부모는 자식이 끝날때까지 기다려야한다.  
+( The parent can for instance wait for it children to complete )  
+( Or cancel all its children if an exception occurs in one of them. )  
+
 
 - Structured Concurrency 요약  
   - must be started in a logical scope  
