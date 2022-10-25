@@ -187,6 +187,7 @@ fun postItem(item: Item?, completion: Continuation<Any?>) {
 ```
 
 ## CoroutineContext vs. CoroutineScope  
+https://youtu.be/w0kfnydnFWI?t=87  
 
 ### CoroutineContext  
 - Every coroutine has a coroutine context which is immutable.
@@ -230,7 +231,6 @@ val job = scope.launch {
 ```
 
 ## [Job](https://medium.com/androiddevelopers/exceptions-in-coroutines-ce8da1ec060c)  
-https://youtu.be/w0kfnydnFWI?t=87
 - A coroutine itself is represented by a Job  
 - Responsible for coroutine’s lifecycle, cancellation, and parent-child relations. 
 - Coroutine builders (launch or async) returns a Job instance that uniquely identifies the coroutine.  
