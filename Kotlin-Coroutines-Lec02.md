@@ -117,7 +117,7 @@ fun postItem(item: Item, completion: Continuation<Any?>) {
 }
 ```
 
-좀 더 realistic하게 표현한다면  
+좀 더, realistic하게 표현한다면( Continuation에 들어 있는 label을 이용하여 suspend-resume이 동작 )  
 ```kotlin  
 fun postItem(item: Item, completion: Continuation<Any?>) {
     when(label) {
@@ -135,3 +135,53 @@ fun postItem(item: Item, completion: Continuation<Any?>) {
 }
 
 ```
+
+주요 저장되는 정보는 다음과 같다. ( 컴파일러가 생성하는 private class 내용 )  
+```kotlin  
+fun postItem(item: Item?, completion: Continuation<Any?>) {
+
+    class PostItemStateMachine(
+        completion: Continuation<Any?> // callback to the fun that called postItem
+    ): CoroutineImpl(completion) {
+        // Local variables of the suspend function
+        var token: Token? = null
+        var post: Post? = null
+        // Common objects for all CoroutineImpls
+        var result: Any? = null
+        var label: Int = 0
+        // this function calls the `postItem` again to trigger the
+        // state machine (label will be already in the next state)
+        override fun invokeSuspend(result: Any?) {
+            this.result = result // result of the previous state's computation
+            postItem(null, this)
+        }
+    }
+    
+    //...
+    
+    val continuation = completion as? PostItemStateMachine
+                                    ?: PostIemStateMachine(completion)
+
+    when(continuation.label) {
+        0 -> {
+            throwOnFailure(continuation.result) // Checks for failures
+            // next time this coroutine is called, it should go to state 1
+            continuation.label = 1
+            // The continuation object is passed to requestToken to resume
+            // this state machine's execution when it finishes
+            requestToken(continuation)
+        }
+        1 -> {
+            throwOnFailure(continuation.result)
+            // Gets the result of the previous state
+            continuation.token = continuation.result as Token
+            continuation.label = 2
+            createPost(continuation.token, item, continuation)
+        }
+            //... leaving out the last state on purpose
+    }
+    
+}
+
+```
+
