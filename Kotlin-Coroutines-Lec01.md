@@ -399,6 +399,15 @@ suspend fun loadAndCombine(
   val deferred1 = scope.async { loadImage(name1) }
   val deferred2 = scope.async { loadImage(name2) }
   return combineImages(deferred1.await(), deferred2.await())
-  }
 }
 ```
+
+- Structured Concurrency  
+  - must be started in a logical scope  
+  - same scope form a hierarchy  
+  - A parent job won't complete until all its children have completed  
+  - (의도적인)Cancelling a parent or (Exception)failure will cancels all its children  
+  - (의도적인)Cancelling a child won't cacel the parent and its siblings. (부모는 그대로 있는다)
+  - (Exception)Failure of a child cancels the parent and all of its siblings. 
+    ( 전파를 멈추려면, hirerachy 상에 SupervisorJob 을 쓰면 된다. )
+    
