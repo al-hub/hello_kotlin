@@ -186,3 +186,32 @@ fun postItem(item: Item?, completion: Continuation<Any?>) {
 
 ```
 
+## CoroutineContext vs. CoroutineScope  
+
+### CoroutineContext  
+- Every coroutine has a coroutine context which is immutable.
+   - CoroutineContext can be inherited from parent to child.
+   - The CoroutineContext is an indexed set of elements (set + map) 
+       - element들로 구성되어어 있고, key와 value가 있다. (UID가 있다)
+       - Job: controls the lifecycle of the corountine.
+       - CoroutineDispatcher: dispatchers work to the appropriate thread
+       - CoroutineName: name of the coroutine (for debugging)
+       - CoroutineExceptionHandler: handles uncaught exceptions.
+       
+프로그램상에서는 CoroutineContext를 어떻게 접근할 수 있는가?  
+```kotlin
+fun main() = runBlocking {
+    println(Thread.currentThread().name)
+    println("$coroutineContext")
+    println("${coroutineContext[Job]}")
+    println("${coroutineContext[ContinuationInterceptor]}") //dispatcher
+}
+```
+```
+main
+[BlockingCoroutine{Active}@335eadca, BlockingEventLoop@210366b4]
+BlockingCoroutine{Active}@335eadca
+BlockingEventLoop@210366b4
+```
+(hash번호는 object number 임)     
+
