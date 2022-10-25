@@ -5,7 +5,7 @@
   - LiveData (java에서 ViewModel - View 사이에 safe한 관리를 위해 사용): kotlin에서는 kotlin flow가 사용  
   - Reactive Stream, RxJava, RxKotlin
 
-- 느낌
+- Coroutine 느낌
   - stop 느낌
   - 기차길 느낌
   - Trampoline느낌, flatmap: list of list를 하나의 list로 펼칠 때 -> controller를 줬다 받았다 하면서 진행
@@ -389,3 +389,4 @@ suspend fun loadAndCombine(name1: String, name2: String): Image {
 모든 coroutine은 Scope를 통해서 tree hierarchy를 가진다.  
 즉, 부모는 자식이 끝날때까지 기다려야한다.  
 ( The parent can for instance wait for it children to complete )  
+( Or cancel all its children if an exception occurs in one of them. )  
