@@ -216,3 +216,10 @@ BlockingEventLoop@210366b4
 ```
 (hash번호는 object number 임)     
 
+### Job  
+![image](https://user-images.githubusercontent.com/56526241/197700988-60dd30c6-20ad-4f55-9eef-b693f279fb4e.png)
+
+- A coroutine itself is represented by a Job  
+- Responsible for coroutine’s lifecycle, cancellation, and parent-child relations. 
+- Coroutine builders (launch or async) returns a Job instance that uniquely identifies the coroutine.  
+- You can also pass a Job to a CoroutineScope to keep a handle on its lifecycle.  
