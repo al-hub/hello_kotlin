@@ -406,8 +406,8 @@ suspend fun loadAndCombine(
   - must be started in a logical scope  
   - same scope form a hierarchy  
   - A parent job won't complete until all its children have completed  
-  - (의도적인)Cancelling a parent or (Exception)failure will cancels all its children  
-  - (의도적인)Cancelling a child won't cacel the parent and its siblings. (부모는 그대로 있는다)
+  - (의도적인,Intentional)Cancelling a parent or (Abnormal Exception)failure will cancels all its children  
+  - (Intentional)Cancelling a child won't cacel the parent and its siblings. (부모는 그대로 있는다)
   - (Exception)Failure of a child cancels the parent and all of its siblings. 
     ( 전파를 멈추려면, hirerachy 상에 SupervisorJob 을 쓰면 된다. )
     
