@@ -216,10 +216,59 @@ BlockingEventLoop@210366b4
 ```
 (hash번호는 object number 임)     
 
-### Job  
-![image](https://user-images.githubusercontent.com/56526241/197700988-60dd30c6-20ad-4f55-9eef-b693f279fb4e.png)
+**엄청나게 중요한 부분**  
+- 새로 생성된 corountine의 CorountineContext  
+    - 새로운 corountine은 항상 새로운 job이 assign 된다.  
 
+Quiz
+```kotlin
+val scope = CoroutineScope(Job())
+scope.launch(SupervisorJob()) {
+    launch {
+        // child 1
+    }
+    
+    launch {
+        // child 2
+    }
+}
+```
+Q: Given the following code snippet, can you identify what kind of Job “child 1” has as a parent?  
+   Job or SupervisorJob?  
+A: 새로생성된는 job은 normal job 이다.
+   CoroutineScope의 parent가 SupervisorJob  
+   
+inheritance에 관련된 오해와 진실
+![image](https://user-images.githubusercontent.com/56526241/197704183-dabc9962-0efc-4616-9615-deb42b4a1a0f.png)
+Scope Context ≠ Parent context  
+부모의 Scope Context + Additional Context -> Parent context 를 그대로 물려 받되, Child Job은 새로 생성 됨  
+즉, Child의 parent context는 parent context와 다를 수 있다  
+  
+
+### CoroutineScope  
+- Every coroutine must be created inside the coroutine scope to control lifecycle.
+- coroutines 은 scope.cancel() 로도 cancel 할 수 있다.
+- 안드로이드에서는 viewModelScope, lifecycleScope 을 사용할 수 도 있다.
+
+manullay 생성 할 때는(Factory Function을 사용해서 할 수 있다),  
+```
+val scope = CoroutineScope(Job() + Dispatchers.Main)
+val job = scope.launch {
+    // new coroutine
+}
+```
+
+### Job  
 - A coroutine itself is represented by a Job  
 - Responsible for coroutine’s lifecycle, cancellation, and parent-child relations. 
 - Coroutine builders (launch or async) returns a Job instance that uniquely identifies the coroutine.  
-- You can also pass a Job to a CoroutineScope to keep a handle on its lifecycle.  
+- You can also pass a Job to a CoroutineScope to keep a handle on its lifecycle. 
+
+Job lifecycle
+![image](https://user-images.githubusercontent.com/56526241/197700988-60dd30c6-20ad-4f55-9eef-b693f279fb4e.png)
+
+State  
+현재, Job의 상태는 isActive, isCompleted, isCancelled 의 flag로 유추해야 한다.
+![image](https://user-images.githubusercontent.com/56526241/197701352-4fa08038-33ff-482e-94be-3b3d4f19b9f2.png)
+
+
