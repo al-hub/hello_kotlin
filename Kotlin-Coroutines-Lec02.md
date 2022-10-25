@@ -230,6 +230,7 @@ val job = scope.launch {
 ```
 
 ## [Job](https://medium.com/androiddevelopers/exceptions-in-coroutines-ce8da1ec060c)  
+https://youtu.be/w0kfnydnFWI?t=87
 - A coroutine itself is represented by a Job  
 - Responsible for coroutine’s lifecycle, cancellation, and parent-child relations. 
 - Coroutine builders (launch or async) returns a Job instance that uniquely identifies the coroutine.  
@@ -270,5 +271,3 @@ inheritance에 관련된 오해와 진실
 Scope Context ≠ Parent context  
 부모의 Scope Context + Additional Context -> Parent context 를 그대로 물려 받되, Child Job은 새로 생성 됨  
 즉, Child의 parent context는 parent context와 다를 수 있다  
-  
-https://youtu.be/w0kfnydnFWI
