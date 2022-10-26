@@ -174,9 +174,13 @@ Quiz1(StandardTestDispatcher)
         log("$currentTime")
     }
 ```
-Quiz1-Ans: TODO() is '0'
-
-
+<details>
+<summary>Quiz1-Ans:</summary>
+<div markdown="1">
+  TODO() is '0'
+</div>
+</details>
+ 
 Quiz2(UnconfinedCoroutineDispatcher)
 ```
     @Test
@@ -193,8 +197,12 @@ Quiz2(UnconfinedCoroutineDispatcher)
         log("$currentTime")
     }
 ```
-Quiz2-Ans: TODO() is '1'
-
+<details>
+<summary>Quiz2-Ans:</summary>
+<div markdown="1">
+  TODO() is '1'
+</div>
+</details>
 
 Quiz3(realistic example)  
 42와 777을 어떻게 테스트할 수있을까?  
@@ -207,7 +215,7 @@ Quiz3(realistic example)
             }
         }
 ```
-<detail>
+<details>
 <summary>Quiz3-Ans</summary>
 <div markdown="1">
 
@@ -234,4 +242,4 @@ Quiz3(realistic example)
 ```
 
 </div>
-</detail>
+</details>
