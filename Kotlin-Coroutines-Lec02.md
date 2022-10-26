@@ -504,7 +504,7 @@ corountieScope이 실행되는 동안 부모는 suspend 되있다.
 id를 출력해보면 부모와 같은 내용임
 ```
 
-coroutineScope 사용 시 특징 - 언커트 exception with through 되어서 try-catch
+coroutineScope 사용 시 특징 - uncaught exception이 with through 되어서 try-catch 할 수 있다.  
 ```kotlin
 object coroutineScope_Demo3 {
     @JvmStatic
