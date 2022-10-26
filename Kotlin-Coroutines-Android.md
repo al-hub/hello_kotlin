@@ -70,7 +70,7 @@ dependencies {
 }
 
 public val LifecycleOwner.lifecycleScope: LifecycleCoroutineScope
-g et() = lifecycle.coroutineScope
+get() = lifecycle.coroutineScope
 
 ```
 
