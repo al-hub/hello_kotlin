@@ -21,7 +21,7 @@ fun main() {
   }
 }
 ```
-```
+```kotlin
 launch {
   try {
     println("1. Exception thrown inside launch")
