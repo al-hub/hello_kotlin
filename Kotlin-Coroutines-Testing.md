@@ -73,3 +73,50 @@ given-when-then style (triple A)
   assertThat(articles).isEqualTo(testArticles) //(assertJ 같은것) truth라이브러리로 assertThat사용
 }
 ```
+
+딜레이가 있는-대상
+```kotlin
+class MyViewModel(val apiService:ApiService) : ViewModel() {
+  val scope = CoroutineScope(SupervisorJob())
+  fun onButtonClicked() {
+  scope.launch {
+    loadData()
+  }
+}
+
+```
+
+딜레이가 있는-테스트(실행시면, fail이 난다.)
+```kotlin
+@Test fun `test onButtonClicked`() = runBlocking {
+  coEvery { apiService.getArticles() } coAnswers {
+    delay(3_000) //네트웍 딜레이만큼 시뮬레이션 함
+    testArticles
+  }
+  viewModel.onButtonClicked()
+  val articles = viewModel.articles.getValueForTest()
+  assertThat(articles).isEqualTo(testArticles)
+  //벌써 메인은 여기까지와 있다.. 즉, 제대로 테스트가 안 될꺼다.
+}
+
+```
+기대는 \[Article(id=T001, … 을 했으나, null 이 나온다.  
+main에 delay를 넣으면 기대처럼 될 수도 있으나 테스트가 느려지고, 코드맞추기도 어렵다.  
+이럴때, runTest를 쓰자
+
+딜레이가 있는-테스트(runTest)
+```kotlin
+@Test fun `test onButtonClicked`() = runTest {
+  coEvery { apiService.getArticles() } coAnswers {
+    delay(3000); testArticles
+  }
+  
+  val testDispatcher = ...
+  viewModel = ArticleViewModel(apiService, testDispatcher)
+  viewModel.onButtonClicked()
+  advanceUntilIdle() // this is also OK
+  
+  val articles = viewModel.articles.getValueForTest()
+  assertThat(articles).isEqualTo(testArticles)
+}
+```
