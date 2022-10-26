@@ -22,7 +22,9 @@ fun main(args: Array<String>) = runBlocking {
 ```
 
 ## advanced 예제
-CoroutineScope, Job(), launch/async, suspend, exception, try-catch, withContext, isActive
+두 이미지를 로드하여 합치는 상황을  
+CoroutineScope, Job(), launch/async, suspend, exception, try-catch, withContext, isActive  
+등 의 coroutin 관련 주요 API들을 사용한 샘플 코드 
 ```kotlin
 @JvmInline
 private value class Image(val name: String)
