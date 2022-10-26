@@ -58,3 +58,36 @@ object Uncooperative_Cancellation {
         yield()
 ```
 </details>
+
+## A coroutine in the cancelling state is not able to suspend!
+To be able to call suspend functions when a coroutine is cancelled, switch the cleanup work in a NonCancellable coroutine context.
+
+```kotlin
+val job = launch {
+    try {
+        work()
+    } catch (e: CancellationException){
+        println(“Work cancelled!”)
+    } finally {
+        withContext(NonCancellable){
+            delay(1000L) ЃѮ or some other suspend fun
+            println(“Cleanup done!”)
+        }
+    }
+}
+```
+
+
+## CancellationException 
+We consume the CancellationException and prevent the coroutine from being cancelled properly.  
+```kotlin
+private suspend fun <T> fetchData(action: suspend () -> T) =
+try {
+liveData.value = Resource.Success(action())
+} catch (ex: Exception) {
+liveData.value = Resource.Error(ex.message)
+if (ex is CancellationException) {
+throw ex
+}
+}
+```
