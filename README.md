@@ -13,9 +13,13 @@ dispatcher
 - dispatcher  
 
 
+let, with, apply, also
+
 callback  
 block, non-block  
 sync , async  
 
 lambda 함수호출  
 lambda with recieve  
+
+
