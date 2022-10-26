@@ -129,7 +129,7 @@ val recipe: LiveData<Resource<Recipe>> = liveData {
 ```
 
 Creating LiveData emitting values (2)  
-flatMap의 signiture는 변화지 않는다.
+switchMap은 flatMap과 같다. (flatMap의 signiture는 어디에서도 변화지 않는다.)  
 ```kotlin  
 // a LiveData that fetches a `User` object based on a `userId`
 // and refreshes it every 30 seconds as long as it is observed
