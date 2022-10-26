@@ -89,14 +89,14 @@ Exception in thread "DefaultDispatcher-worker-1 …
 
 supervisorScope라 하더라도, Exception은 여전히 윗 쪽으로 propagation 된다...  
 즉, Exception 제어에 대해서는 별도로 생각해야 한다.  
-```
+```kotlin
 val scope = CoroutineScope(Job())
   scope.launch {
     val job1 = launch {
       println("starting Coroutine 1")
   }
   supervisorScope {
-    val job2 = launch(ehandler) {
+    val job2 = launch(handler) {
       throw RuntimeException("oops")
     }
     val job3 = launch {
@@ -106,3 +106,82 @@ val scope = CoroutineScope(Job())
 }
 ```
 
+handler로 작동하는 시나리오 (3가지뿐) 나머지는 안된다...
+```kotlin
+scope=CoroutineScope(Job() + handler)
+scope.launch {
+    launch {
+      throw Exception(“failed”)
+    }
+}
+```
+```kotlin
+val scope = CoroutineScope(Job())
+scope.launch(handler) {
+  launch {
+    throw Exception(“failed”)
+  }
+}
+```
+```kotlin
+  supervisorScope {
+    val job = launch(handler) {
+      throw Exception(“failed”)
+    }
+```
+
+async Root coroutine - 정상case,
+```kotlin
+  supervisorScope {
+    val deferred = async {
+      codeThatCanThrowExceptions()
+    }
+    try {
+      deferred.await()
+    } catch(e: Exceptoin) {
+      // Handle exception thrown in async
+    }
+   }
+```
+async Root coroutine - 오류case,
+```kotlin
+  coroutineScope {
+    val deferred = async {
+      codeThatCanThrowExceptions()
+    }
+    try {
+      deferred.await()
+    } catch(e: Exceptoin) {
+      // This WON'T be called! 정상동작 안될 꺼야..
+    }
+   }
+```
+
+handler Root coroutine - 정상case,
+```kotlin
+val handler = CoroutineExceptionHandler {
+  _, exception -> pirntlin("Caught $exceptoin")
+}
+
+scope.launch {
+  supervisorScope {
+    launch(handler) {
+      throw Exception("Failed coroutine")
+    }
+  }
+}
+```
+handler Root coroutine - 오류case,
+```kotlin
+val handler = CoroutineExceptionHandler {
+  _, exception -> pirntlin("Caught $exceptoin")
+}
+
+scope.launch {
+  coroutineScope {
+    launch(handler) {
+      throw Exception("Failed coroutine")
+    }
+  }
+}
+```
