@@ -17,6 +17,7 @@
   - val scope = CoroutineScope(Job() + CoroutineName("My Scope"))
   - ${parentJob.children.count()}
   - ${scope.coroutineContext.job.isActive}
+  - 잘모르겠다 싶으면 normal한 func으로 쓰고, 내 body안에서 suspend func이 필요하면 suspend을 써라.
   - [debug log](Kotlin_Coroutines_log.kt)
   - coroutine 종료 시, builder에 callback method를 등록시켜 놓을 수 있다. 예시) .onCompletion("child1")  
 사전에 정의 해 놓고, 사용해야 함  
