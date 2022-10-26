@@ -149,7 +149,7 @@ val user: LiveData<User> = userId.switchMap { id ->
 }
 ```
 
-동작원리   
+동작원리(flatMap의 signiture는 어디에서도 변화지 않는다.)     
 ```scala
 Monad
 def map    [A, B](fa:     List[A])(f: A =>           B):     List[B] == ???
