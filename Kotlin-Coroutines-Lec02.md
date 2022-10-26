@@ -365,3 +365,55 @@ object Custom_Dispatchers_Demo {
     }
 }
 ```
+
+2022-10-26  
+## Scope Builders  
+- CoroutineScope() (기본형으로 사용하는 Factory function 임)
+- MainScope() (최근에는 사용할 필요성이 없음)
+- GlobalScope (ready made instance로 사용할수 있으나 권고하지 않음, 불필요한 리소스 낭비 가능성 있음)
+- viewModelScope/lifecycleScope (Android 에서 사용 ready made object 임 , 유일하게 job 이 없음)
+- coroutineScope/supervisorScope (scope function의 개념으로 접근)
+
+## Coroutine Builder  
+Coroutine Function의 Extension으로 선언 됨
+- lanch
+- async
+- runBlocking (regular function 임,  extension function 아님)
+- runTest (regular function 임)
+- withContext (suspending function , withContext에서만 dispatcher를 바꾸어서 사용)
+
+## 성격이 비슷한 녀석만 다시 모아본다면, Coroutine Scope Function (일반사항은 아님)  
+목적: scope안에 sub-scope를 생성한다!!  
+- coroutineScope
+- supervisorScope
+- withContext
+- withTimeout/withTimeoutOrNull
+
+### coroutineScope  
+왜 필요한가? seqencial 하게 수행하지 않고, concurrency 하게 동작하게 하기 위해서
+기존방식(두개의 dependency 없는 함수를 합쳐서 결과를 리턴해야하는 경우)  
+```kotlin
+// Data loaded sequentially, not simultaneously
+suspend fun getUserProfile(): UserProfileData {
+    val user = getUserData()
+    val notifications = getNotifications()
+    return UserProfileData(
+        user = user,
+        notifications = notifications,
+    )
+}
+
+```
+
+제안방식  
+```
+suspend fun getUserProfile(): UserProfileData =
+    coroutineScope {
+        val user = async { getUserData() }
+        val notifications = async { getNotifications() }
+        UserProfileData(
+            user = user.await(),
+            notifications = notifications.await(),
+        )
+    }
+```
