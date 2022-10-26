@@ -471,3 +471,70 @@ object Not_What_We_Want {
 // Only Exception...
 }
 ```
+
+coroutineScope 사용 시 특징 - ID
+//block스타일로 동작한다.(runBlocking처럼 동작)
+//부오와 똑같은 아디이를 가진다. (called in-place) , 자식이 부모행세(역할)를 한다.  
+```kotlin
+object coroutineScope_Demo1 {
+    @JvmStatic
+    fun main(args: Array<String>) = runBlocking {
+        log("runBlocking: $coroutineContext")
+
+        val a = coroutineScope {
+            delay(1000).also {
+                log("a: $coroutineContext")
+            }
+            10
+        }
+        log("a is calculated = $a")
+        val b = coroutineScope {
+            delay(1000).also {
+                log("b: $coroutineContext")
+            }
+            20
+        }
+        log("a = $a, b = $b")
+    }
+}
+```
+
+corountieScope이 실행되는 동안 부모는 suspend 되있다.  
+```
+id를 출력해보면 부모와 같은 내용임
+```
+
+coroutineScope 사용 시 특징 - 언커트 exception with through 되어서 try-catch
+```kotlin
+object coroutineScope_Demo3 {
+    @JvmStatic
+    fun main(args: Array<String>) = runBlocking {
+        log("runBlocking begins")
+
+        try {
+            coroutineScope {
+                log("Launching children ...")
+
+                launch {
+                    log("child1 starts")
+                    delay(2000)
+                }.onCompletion("child1")
+
+                launch {
+                    log("child2 starts")
+                    delay(1000)
+                    throw RuntimeException("Oops")
+                }.onCompletion("child2")
+
+                delay(10)
+
+                log("Waiting until children are completed ...")
+            }
+        } catch (ex: Exception) {
+            log("Caught exception: ${ex.javaClass.simpleName}")
+        }
+
+        log("Done!")
+    }
+}
+```
