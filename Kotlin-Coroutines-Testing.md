@@ -207,6 +207,7 @@ Quiz3(realistic example)
             }
         }
 ```
+<detail>
 <summary>Quiz3-Ans</summary>
 <div markdown="1">
 
@@ -233,4 +234,4 @@ Quiz3(realistic example)
 ```
 
 </div>
-
+</detail>
