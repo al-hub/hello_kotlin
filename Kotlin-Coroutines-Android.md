@@ -103,3 +103,57 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 streaming은 다른방법을 추천함 ( flow를 알아야 함 )
+
+
+## LiveData with Coroutine  
+kotlin에서만 사용 가능함  
+liveData Builder(Default: Dispatchers.Main.immediate)  
+```kotlin
+dependencies {
+  implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version
+}
+
+public fun <T> liveData(
+  context: CoroutineContext = EmptyCoroutineContext,
+  timeout: Duration,
+  block: suspend LiveDataScope<T>.() -> Unit
+): LiveData<T> = CoroutineLiveData(context, …, block
+```
+
+Creating LiveData emitting values (1)  
+```kotlin  
+val recipe: LiveData<Resource<Recipe>> = liveData {
+  emit(Resource.Loading)
+  emit(longRunningTask())
+}
+```
+
+Creating LiveData emitting values (2)  
+flatMap의 signiture는 변화지 않는다.
+```kotlin  
+// a LiveData that fetches a `User` object based on a `userId`
+// and refreshes it every 30 seconds as long as it is observed
+val userId: LiveData<String> = MutableLiveData<>()
+val user: LiveData<User> = userId.switchMap { id ->
+  liveData {
+    while(true) {
+      // note that `while(true)` is fine because the `delay(30_000)`
+      // below will cooperate in cancellation if LiveData is not
+      // actively observed anymore
+      val user = api.fetch(id) // errors are ignored for brevity
+      emit(user)
+      delay(30_000)
+  }
+}
+}
+```
+
+```scala
+Monad
+def map    [A, B](fa:     List[A])(f: A =>           B):     List[B] == ???
+def flatMap[A, B](fa:     List[A])(f: A =>     List[B]):     List[B] == ???
+def flatMap[A, B](fa: LiveData[A])(f: A => LiveData[B]): LiveData[B] == ???
+
+def flatMap[A, B](fa: List[A])(f: A => List[B]): List[B] == flatten(map(fa)(f))
+def flatten[A](fa: List[List[A]]): List[A] == ???
+```
