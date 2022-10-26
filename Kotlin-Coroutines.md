@@ -102,7 +102,7 @@ fun Job.onCompletion(name: String, level: Int = 0): Job = apply {
 <details>
 <summary>결과</summary>
 
-loadImage(name2)사용: (RuntimeException 없을때),
+loadImage(name2)사용: (RuntimeException 없을 때),
 ```
 22:45:53.954 [DefaultDispatcher-worker-1 @MyScope#1] INFO Coroutines - Level-1 Coroutine
 22:45:53.969 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - Level-2 Coroutine
