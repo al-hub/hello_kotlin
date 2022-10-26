@@ -23,6 +23,7 @@ suspend fun loadData() {
     apiService.networkRequest()
   }
   show(data)
+}
 ```
 
 
