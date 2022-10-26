@@ -545,8 +545,37 @@ Think of it as the modern replacement for the runBlocking function.
 suspend fun main(): Unit = coroutineScope { ... }
 ```
 
+### supervisorScope
+
 **왕짜증CASE**  
 supervisorScope를 쓰게되면, Global Exception Handler와 같이 써라!!  
 
 supervisorScope: child가 fail되면 해당 child만 fail  
 (**왕짜증CASE** : child가 fail이면 exception propagation 되고, 본인이 fail이면 with through 가 일어난다)  
+
+
+### withContext  
+실재로 쓸때는 dispathcer를 바꿀 때 주로 쓴다.  
+- 물려받은 parent context를 override 하는 느낌  
+- 블럭이 끝나면 back to the original dispatcher 로 된다.  
+```kotlin  
+
+```
+
+Suspending Convention
+suspending functions do not block the caller thread  
+특히, 메인쓰레들를 suspend 시키는 짓을 하면 안된다!! → withContext을 써라!!  
+(호출하는 side에서는 무지성으로 불러써도 된다!! **Main Safety** 가 된다.)  
+```kotlin
+suspend fun findBigPrime(): BigInteger =
+    withContext(Dispatchers.Default) {
+        BigInteger.probablePrime(4096, Random())
+}
+```
+
+```kotlin
+suspend fun BufferedReader.readMessage(): Message? =
+    withContext(Dispatchers.IO) {
+        readLine()?.parseMessage()
+    }
+```
