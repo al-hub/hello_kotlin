@@ -128,6 +128,7 @@ main에 delay를 넣으면 기대처럼 될 수도 있으나 테스트가 느려
     - inclusive한 현재시간까지 들어오게 하려면 runCurrent() 사용
   - advanceUntilIdle()
     - 갈때까지 끝까지 다가라  
+
 예시
 ```kotlin
     @Test
