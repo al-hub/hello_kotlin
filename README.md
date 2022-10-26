@@ -1,4 +1,4 @@
-# hello_kotlin
+# [hello_kotlin](https://medium.com/mj-studio/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B4%EB%A0%87%EA%B2%8C-%EC%9E%91%EC%84%B1%ED%95%98%EC%8B%9C%EB%A9%B4-%EB%90%A9%EB%8B%88%EB%8B%A4-94871a1fa646)
 
 structured concurrency  
 : control flow (Scope) 을 도입하여, cancel(exception) propagation이 간결히 이루어지게 한다.([예시](https://suhwan.dev/2022/01/21/Kotlin-coroutine-structured-concurrency/))    
@@ -13,7 +13,7 @@ dispatcher
   - dispatcher  
 
 - kotlin
-  - [let, with](https://www.youtube.com/watch?v=RBGHA1cYsRM&list=PLg3A12oL1JCO5YhYFqDUM-_NcBy32-Bd2&index=11), apply, also
+  - [let, with](https://www.youtube.com/watch?v=RBGHA1cYsRM&list=PLg3A12oL1JCO5YhYFqDUM-_NcBy32-Bd2&index=11), [also](https://0391kjy.tistory.com/50), apply
   - [callback](https://stackoverflow.com/questions/824234/what-is-a-callback-function)  
   - block, non-block  
   - sync , async  
@@ -27,9 +27,8 @@ dispatcher
     
   
   
-- 기타  
-  - Boilerplate 
-  - <details>
+- [Boilerplate](https://gmunch.github.io/2019/07/15/why-kotlin.html)
+<details>
 <summary> java vs kotlin </summary>
 
 ```java
@@ -86,5 +85,6 @@ dispatcher
 )
 ```
 </details>    
-  - 플락션(flection) 코드 ??  
+
+- 플락션(flection) 코드 ??  
 
