@@ -2,6 +2,7 @@
 
 - Coroutine 테스트 시, MockK 권고 (Mockito 도 가능은 함)  
   - JUnit도 사용  
+    - Annotation @Before @Test @After 로 이루어진다.  
   - LiveData (java에서 ViewModel - View 사이에 safe한 관리를 위해 사용): kotlin에서는 kotlin flow가 사용  
   - Reactive Stream, RxJava, RxKotlin
 
