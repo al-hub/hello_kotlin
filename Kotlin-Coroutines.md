@@ -1,6 +1,6 @@
 ## coroutine 기본개념
 - coroutines are computations that can be suspended without blocking a thread.
-- multiple entry/exit point
+- multiple entry/exit point  
 ( 쓰레드 풀에 동작 가능하도록 함수 구성하는 방식, 1950년대부터 제안되었고, kotlin API 제공 됨 )
 
 ## thread vs coroutine
