@@ -35,7 +35,7 @@ object Uncooperative_Cancellation {
 ```
 
 <details>
-<summary />suspend library function 은 재시작시에 확인한다!!
+<summary>suspend library function 은 재시작시에 확인한다!!</summary>
 
 ```kotline
         while (isActive) {
