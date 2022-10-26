@@ -179,7 +179,7 @@ val user = liveData {
 ```
 
 
-## LiveData with Coroutine  
+## Coroutine are good for ...    
 -  One shot requests : Use suspending functions
 - Streaming requests : Use Kotlin Flow
 
