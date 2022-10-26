@@ -106,7 +106,9 @@ streaming은 다른방법을 추천함 ( flow를 알아야 함 )
 
 
 ## LiveData with Coroutine  
-kotlin에서만 사용 가능함  
+kotlin에서만 사용 가능함(Kotlin Flow가 대처되는 분위기??)    
+View와 View mode 사이에서 사용  
+
 liveData Builder(Default: Dispatchers.Main.immediate)  
 ```kotlin
 dependencies {
@@ -144,8 +146,8 @@ val user: LiveData<User> = userId.switchMap { id ->
       val user = api.fetch(id) // errors are ignored for brevity
       emit(user)
       delay(30_000)
+    }
   }
-}
 }
 ```
 
@@ -175,3 +177,9 @@ val user = liveData {
   roomDatabase.insert(updated)
 }
 ```
+
+
+## LiveData with Coroutine  
+-  One shot requests : Use suspending functions
+- Streaming requests : Use Kotlin Flow
+
