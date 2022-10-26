@@ -81,13 +81,13 @@ val job = launch {
 ## CancellationException 
 We consume the CancellationException and prevent the coroutine from being cancelled properly.  
 ```kotlin
-private suspend fun <T> fetchData(action: suspend () -> T) =
-try {
-liveData.value = Resource.Success(action())
-} catch (ex: Exception) {
-liveData.value = Resource.Error(ex.message)
-if (ex is CancellationException) {
-throw ex
-}
-}
+    private suspend fun <T> fetchData(action: suspend () -> T) =
+    try {
+        liveData.value = Resource.Success(action())
+    } catch (ex: Exception) {
+        liveData.value = Resource.Error(ex.message)
+        if (ex is CancellationException) {
+            throw ex
+        }
+    }
 ```
