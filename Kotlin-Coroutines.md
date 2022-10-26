@@ -13,7 +13,6 @@
 
 ## Basic Code
 ```kotlin
-//hello coroutine    
 fun main(args: Array<String>) = runBlocking {
   launch {
     println("coroutine")
