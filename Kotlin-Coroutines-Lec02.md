@@ -544,3 +544,9 @@ Think of it as the modern replacement for the runBlocking function.
 ```
 suspend fun main(): Unit = coroutineScope { ... }
 ```
+
+**왕짜증CASE**  
+supervisorScope를 쓰게되면, Global Exception Handler와 같이 써라!!  
+
+supervisorScope: child가 fail되면 해당 child만 fail  
+(**왕짜증CASE** : child가 fail이면 propagation 되고, 본인이 fail이면 with through 가 일어난다)  
