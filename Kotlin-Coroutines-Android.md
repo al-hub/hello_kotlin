@@ -183,3 +183,4 @@ val user = liveData {
 -  One shot requests : Use suspending functions
 - Streaming requests : Use Kotlin Flow
 
+[good news](https://medium.com/androiddevelopers/coroutines-on-android-part-iii-real-work-2ba8a2ec2f45):  Room, Retrofit is also main-safe and run on a custom dispatcher  
