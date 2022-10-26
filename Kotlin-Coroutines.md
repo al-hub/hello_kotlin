@@ -6,8 +6,7 @@
 ## thread vs coroutine
 - 장점
   - light-weight thread
-  - structured concurency
-( coroutine 내 job들의 동시성 유지 ) 
+  - structured concurency (job들의 동시성 유지)  
 - 단점
   - 익숙하지 않음
   - API가 계속 update 되고 있음
