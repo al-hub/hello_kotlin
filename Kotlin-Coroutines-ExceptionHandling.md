@@ -50,7 +50,7 @@ fun main() {
 }
 ```
 
-```kotin
+```kotlin
 @Test
 fun `Uncaught exceptions propagate`() = runBlocking {
   val scope = CoroutineScope(Job())
