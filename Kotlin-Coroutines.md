@@ -102,7 +102,7 @@ fun Job.onCompletion(name: String, level: Int = 0): Job = apply {
 <details>
 <summary>결과</summary>
 
-loadImage(name2)(RuntimeException 없을때),
+loadImage(name2)사용: (RuntimeException 없을때),
 ```
 22:45:53.954 [DefaultDispatcher-worker-1 @MyScope#1] INFO Coroutines - Level-1 Coroutine
 22:45:53.969 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - Level-2 Coroutine
@@ -116,7 +116,7 @@ loadImage(name2)(RuntimeException 없을때),
 Process finished with exit code 0
 ```
 	
-loadImageFail(name2)+try-catch가 있을 때,  
+loadImageFail(name2) + try-catch가 있을 때,  
 ```
 22:40:49.952 [DefaultDispatcher-worker-1 @MyScope#1] INFO Coroutines - Level-1 Coroutine
 22:40:49.967 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - Level-2 Coroutine
@@ -129,7 +129,7 @@ loadImageFail(name2)+try-catch가 있을 때,
 22:40:50.112 [main] INFO Coroutines - combined image = null
 ```
 
-loadImageFail(name2)+try-catch가 없을 때,  
+loadImageFail(name2) + try-catch가 없을 때,  
 ```shell
 22:44:22.531 [DefaultDispatcher-worker-1 @MyScope#1] INFO Coroutines - Level-1 Coroutine
 22:44:22.546 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - Level-2 Coroutine
