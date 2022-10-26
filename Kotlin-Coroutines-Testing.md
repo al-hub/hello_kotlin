@@ -8,7 +8,7 @@
 
 ## Unit Test
 - 기본조건: FIRST principle 
-- Fast(느리면기피), Isolated/Independent(주변과격리), Repeatable(일관), Self-Validating(결과자동), Thorought(철저하게)
+- Fast(느리면기피함), Isolated/Independent(주변과격리), Repeatable(일관), Self-Validating(결과자동), Thorought(철저하게)
 - efficient, stable 해야한다.
 - In Coroutine,
   - How to build a coroutine from the unit tests.
