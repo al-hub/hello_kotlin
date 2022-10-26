@@ -566,13 +566,14 @@ Suspending Convention
 suspending functions do not block the caller thread  
 특히, 메인쓰레들를 suspend 시키는 짓을 하면 안된다!! → withContext을 써라!!  
 (호출하는 side에서는 무지성으로 불러써도 된다!! **Main Safety** 가 된다.)  
+예시)
 ```kotlin
 suspend fun findBigPrime(): BigInteger =
     withContext(Dispatchers.Default) {
         BigInteger.probablePrime(4096, Random())
 }
 ```
-
+예시)
 ```kotlin
 suspend fun BufferedReader.readMessage(): Message? =
     withContext(Dispatchers.IO) {
