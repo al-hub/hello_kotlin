@@ -21,6 +21,16 @@ fun main() {
   }
 }
 ```
+```
+launch {
+  try {
+    println("1. Exception thrown inside launch")
+    throw RuntimeException()
+  } catch (ex: Exception) {
+    println("Exception ${ex.javaClass.simpleName} caught ...")
+  }
+}
+```
 
 But Exception Propagation up to …  
 ```kotlin
@@ -95,3 +105,4 @@ val scope = CoroutineScope(Job())
   }
 }
 ```
+
