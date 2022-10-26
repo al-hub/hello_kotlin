@@ -6,26 +6,85 @@ structured concurrency
 dispatcher  
 : 어떤 threadpool에서 사용할 지, thread에 coroutine을 보낸다.([예시](https://kotlinworld.com/141))     
 
+- coroutine 
+  - scope  
+  - lanch, async, runBlocking  
+  - job  
+  - dispatcher  
 
-- scope  
-- lanch, async, runBlocking  
-- job  
-- dispatcher  
+- kotlin
+  - [let, with](https://www.youtube.com/watch?v=RBGHA1cYsRM&list=PLg3A12oL1JCO5YhYFqDUM-_NcBy32-Bd2&index=11), apply, also
+  - [callback](https://stackoverflow.com/questions/824234/what-is-a-callback-function)  
+  - block, non-block  
+  - sync , async  
+  - [함수타입(+lambda)](https://youtu.be/xZrSadIO6Mg?list=PLg3A12oL1JCNke34RZ-WApabuvQsfSWPv&t=751)
+  - lambda with recieve  
 
+- Try This
+  - JUnit
+  - LiveData (observerable view holder) study 필요  
+  - Kotlin flow
+    
+  
+  
+- 기타  
+  - Boilerplate 
+<details>
+<summary> java vs kotlin </summary>
 
-let, with, apply, also
+```java
+  public class DataExample {
+    private final String name;
+    private int age;
+    private double score;
+    private String[] tags;
 
-callback  
-block, non-block  
-sync , async  
+    public DataExample(String name) {
+      this.name = name;
+    }
 
-lambda 함수호출  
-lambda with recieve  
+    public String getName() {
+      return this.name;
+    }
 
+    void setAge(int age) {
+      this.age = age;
+    }
 
--. LiveData (observerable view holder) study 필요  
+    //...
+    public String[] getTags() {
+      return this.tags;
+    }
 
+    public void setTags(String[] tags) {
+      this.tags = tags;
+    }
 
-Boilerplate code
+    @Override public String toString() {
+      return "DataExample(" + this.getName() + ", "
+        + this.getAge() + ", " + this.getScore() + ", "
+        + Arrays.deepToString(this.getTags()) + ")";
+    }
 
-플락션(flection) 코드 ??  
+    protected boolean canEqual(Object other) {
+      return other instanceof DataExample;
+    }
+
+    @Override public boolean equals(Object o) {
+      //...
+      return true;
+    }
+
+    @Override public int hashCode() {
+     //...
+    }
+```
+```kotlin
+  data class DataExample(
+    val name: String, var score: String?,
+    var tags: Array<String>?
+)
+```
+</details>    
+  - 플락션(flection) 코드 ??  
+
