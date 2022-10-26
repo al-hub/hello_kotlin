@@ -230,3 +230,32 @@ Quiz3-Ans
         assertThat(list).containsExactly(42, 777)
     }
 ```
+
+<details>
+<summary>Quiz3-Ans</summary>
+<div markdown="1">
+
+```kotlin
+    @Test
+    fun `paused and resume dispatcher - realistic example`() = runTest {
+
+        val list = mutableListOf<Int>().apply {
+            add(42)
+            launch {
+                log(Thread.currentThread().name)
+                add(777)
+            }
+        }
+
+        assertThat(list).containsExactly(42)
+
+        runCurrent()
+        // advanceUntilIdle()
+        // delay(1)
+
+        assertThat(list).containsExactly(42, 777)
+    }
+```
+
+</div>
+</details>
