@@ -24,3 +24,6 @@ lambda with recieve
 
 
 -. LiveData (observerable view holder) study 필요  
+
+
+Boilerplate code
