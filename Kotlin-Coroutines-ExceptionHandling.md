@@ -39,7 +39,7 @@ fun main() {
   scope.launch {
     try {
       launch {
-        throw RuntimeException(“…") //위쪽 방향(부모에게)으로 propagation 된다. 
+        throw RuntimeException("…") //위쪽 방향(부모에게)으로 propagation 된다. 
       }
     } catch (ex: Exception) {
       // do something …
