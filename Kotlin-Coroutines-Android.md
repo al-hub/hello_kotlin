@@ -32,7 +32,7 @@ suspend fun loadData() {
 절차대로 따르지않고, 바로 실행되더라도 안정적으로 동작되도록 설계  
 ```kotlin
 dependencies {
-implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version
+implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
 }
 
 public val ViewModel.viewModelScope: CoroutineScope
