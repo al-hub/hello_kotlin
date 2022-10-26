@@ -195,3 +195,38 @@ Quiz2(UnconfinedCoroutineDispatcher)
 ```
 Quiz2-Ans: TODO() is '1'
 
+
+Quiz3(realistic example)  
+42와 777을 어떻게 테스트할 수있을까?  
+```kotlin
+        val list = mutableListOf<Int>().apply {
+            add(42) //리소스의 로딩값
+            launch {
+                log(Thread.currentThread().name)
+                add(777) //로딩완료후의 값
+            }
+        }
+```
+
+Quiz3-Ans
+```kotlin
+    @Test
+    fun `paused and resume dispatcher - realistic example`() = runTest {
+
+        val list = mutableListOf<Int>().apply {
+            add(42)
+            launch {
+                log(Thread.currentThread().name)
+                add(777)
+            }
+        }
+
+        assertThat(list).containsExactly(42)
+
+        runCurrent()
+        // advanceUntilIdle()
+        // delay(1)
+
+        assertThat(list).containsExactly(42, 777)
+    }
+```
