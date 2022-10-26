@@ -23,3 +23,4 @@ lambda 함수호출
 lambda with recieve  
 
 
+-. LiveData (observerable view holder) study 필요  
