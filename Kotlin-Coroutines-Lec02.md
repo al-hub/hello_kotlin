@@ -406,7 +406,7 @@ suspend fun getUserProfile(): UserProfileData {
 ```
 
 제안방식  
-```
+```kotlin
 suspend fun getUserProfile(): UserProfileData =
     coroutineScope {
         val user = async { getUserData() }
@@ -416,4 +416,58 @@ suspend fun getUserProfile(): UserProfileData =
             notifications = notifications.await(),
         )
     }
+```
+
+
+다른방법 (  GlobalScope.async , make as an extension function on CoroutineScope )
+```kotlin
+suspend fun CoroutineScope.getUserProfile(): UserProfileData {
+…
+}
+```
+잠재적인 문제점이 있을 수 있음으로 사용하지 말아라!  
+‒ Requires passing the scope from function to function.  
+‒ Any function that has access to the scope could easily abuse this access and for instance, cancel this scope with the cancel method.  
+‒ Parent coroutine that called getUserProfile cancels for no good reason.  
+
+try-catch가 어려운 case가 발행한다.
+```kotlin
+object Not_What_We_Want {
+    data class Details(val name: String, val followers: Int)
+    data class Tweet(val text: String)
+
+    private suspend fun getFollowersNumber(): Int {
+        delay(100)
+        throw Error("Service exception")
+    }
+
+    private suspend fun getUserName(): String {
+        delay(500)
+        return "paula abdul"
+    }
+
+    private suspend fun getTweets(): List<Tweet> {
+        delay(500)
+        return listOf(Tweet("Hello, world"))
+    }
+
+    private suspend fun getUserDetails(scope: CoroutineScope): Details {
+        val userName = scope.async { getUserName() }
+        val followersNumber = scope.async { getFollowersNumber() }
+        return Details(userName.await(), followersNumber.await())
+    }
+
+    @JvmStatic
+    fun main(args: Array<String>) = runBlocking {
+        val details = try {
+            getUserDetails(this)
+        } catch (e: Error) {
+            null
+        }
+        log("User: $details")
+        val tweets = async { getTweets() }
+        log("Tweets: ${tweets.await()}")
+    }
+// Only Exception...
+}
 ```
