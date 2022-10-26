@@ -101,8 +101,22 @@ fun Job.onCompletion(name: String, level: Int = 0): Job = apply {
 
 <details>
 <summary>결과</summary>
-  
-try-catch가 있을 때,  
+
+loadImage(name2)(RuntimeException 없을때),
+```
+22:45:53.954 [DefaultDispatcher-worker-1 @MyScope#1] INFO Coroutines - Level-1 Coroutine
+22:45:53.969 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - Level-2 Coroutine
+22:45:53.973 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - loadAndCombine
+22:45:53.978 [DefaultDispatcher-worker-5 @Level-2#4] INFO Coroutines - loadImage
+22:45:53.978 [DefaultDispatcher-worker-3 @Level-2#5] INFO Coroutines - loadImage
+22:45:55.024 [DefaultDispatcher-worker-1 @Level-2#3] INFO Coroutines - Level-2: isCancelled = false, exception = null
+22:45:55.024 [DefaultDispatcher-worker-1 @Level-2#3] INFO Coroutines - Level-1: isCancelled = false, exception = null
+22:45:55.039 [main] INFO Coroutines - combined image = Image(name=apple & kiwi)
+
+Process finished with exit code 0
+```
+	
+loadImageFail(name2)+try-catch가 있을 때,  
 ```
 22:40:49.952 [DefaultDispatcher-worker-1 @MyScope#1] INFO Coroutines - Level-1 Coroutine
 22:40:49.967 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - Level-2 Coroutine
@@ -115,7 +129,7 @@ try-catch가 있을 때,
 22:40:50.112 [main] INFO Coroutines - combined image = null
 ```
 
-try-catch가 없을 때,  
+loadImageFail(name2)+try-catch가 없을 때,  
 ```shell
 22:44:22.531 [DefaultDispatcher-worker-1 @MyScope#1] INFO Coroutines - Level-1 Coroutine
 22:44:22.546 [DefaultDispatcher-worker-2 @Level-2#3] INFO Coroutines - Level-2 Coroutine
