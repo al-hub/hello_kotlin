@@ -22,7 +22,7 @@ fun main(args: Array<String>) = runBlocking {
 ```
 
 ## advanced
-Scope, Job, launch(async), suspend, cancel/exception, try-catch  
+Scope, Job, launch(async), suspend, cancel/exception, try-catch, withContext  
 ```kotlin
 
 suspend fun susCustom(): Unit{
