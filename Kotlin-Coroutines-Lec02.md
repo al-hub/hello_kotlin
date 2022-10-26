@@ -538,3 +538,9 @@ object coroutineScope_Demo3 {
     }
 }
 ```
+
+coroutineScope is nowadays often used to wrap suspending main body.  
+Think of it as the modern replacement for the runBlocking function.  
+```
+suspend fun main(): Unit = coroutineScope { ... }
+```
