@@ -130,6 +130,7 @@ val recipe: LiveData<Resource<Recipe>> = liveData {
 
 Creating LiveData emitting values (2)  
 switchMap은 flatMap과 같다. (flatMap의 signiture는 어디에서도 변화지 않는다.)  
+하나씩 바꿀 때,  
 ```kotlin  
 // a LiveData that fetches a `User` object based on a `userId`
 // and refreshes it every 30 seconds as long as it is observed
@@ -148,6 +149,7 @@ val user: LiveData<User> = userId.switchMap { id ->
 }
 ```
 
+동작원리   
 ```scala
 Monad
 def map    [A, B](fa:     List[A])(f: A =>           B):     List[B] == ???
@@ -156,4 +158,20 @@ def flatMap[A, B](fa: LiveData[A])(f: A => LiveData[B]): LiveData[B] == ???
 
 def flatMap[A, B](fa: List[A])(f: A => List[B]): List[B] == flatten(map(fa)(f))
 def flatten[A](fa: List[List[A]]): List[A] == ???
+```
+
+
+통으로 바꿀때,  
+```kotlin 
+// a LiveData that immediately receives a LiveData<User> from the
+// database and yields it as a source but also tries to back-fill
+// the database from the server
+val user = liveData {
+  val fromDb: LiveData<User> = roomDatabase.loadUser(id)
+  emitSource(fromDb)
+  val updated = api.fetch(id) // errors are ignored for brevity
+  // Since we are using Room here, updating the database will
+  // update the `fromDb` LiveData that was obtained above.
+  roomDatabase.insert(updated)
+}
 ```
