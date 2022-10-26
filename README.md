@@ -18,4 +18,4 @@ block, non-block
 sync , async  
 
 lambda 함수호출  
-lambda with recieve
+lambda with recieve  
