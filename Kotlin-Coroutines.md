@@ -21,7 +21,7 @@ fun main(args: Array<String>) = runBlocking {
 }
 ```
 
-## advanced
+## advanced 예제
 CoroutineScope, Job(), launch/async, suspend, exception, try-catch, withContext, isActive
 ```kotlin
 @JvmInline
