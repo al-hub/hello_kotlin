@@ -120,3 +120,48 @@ main에 delay를 넣으면 기대처럼 될 수도 있으나 테스트가 느려
   assertThat(articles).isEqualTo(testArticles)
 }
 ```
+
+- VirtualTimeControl
+  - advanceTimeBy(1000) 
+    - 1초 만큼 전진 시켜라 \[ ) exclusive 한 시간이다.
+  - runCurrent() 
+    - inclusive한 현재시간까지 들어오게 하려면 runCurrent() 사용
+  - advanceUntilIdle()
+    - 갈때까지 끝까지 다가라  
+
+Quiz1
+```
+    @Test
+    fun `virtual time control - StandardTestDispatcher`() = runTest {
+        var state = 0
+
+        launch {
+            state = 1
+            delay(1000)
+            state = 2
+        }
+
+        assertThat(state).isEqualTo(TODO())
+        log("$currentTime")
+    }
+```
+Quiz1-Ans: TODO() is '0'
+
+Quiz2
+```
+    @Test
+    fun `virtual time control - UnconfinedCoroutineDispatcher - eager`() = runTest(UnconfinedTestDispatcher()) {
+        var state = 0
+
+        launch {
+            state = 1
+            delay(1000)
+            state = 2
+        }
+
+        assertThat(state).isEqualTo(TODO())
+        log("$currentTime")
+    }
+```
+Quiz2-Ans: TODO() is '1'
+
