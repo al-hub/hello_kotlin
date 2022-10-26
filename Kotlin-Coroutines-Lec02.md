@@ -580,3 +580,24 @@ suspend fun BufferedReader.readMessage(): Message? =
         readLine()?.parseMessage()
     }
 ```
+
+### withTimeout  
+```kotlin
+suspend fun main(): Unit = coroutineScope {
+    launch {
+        launch { // cancelled by its parent
+            delay(2000)
+            println("Will not be printed")
+        }
+        withTimeout(1000) { // cancel launch
+            delay(1500)
+        }
+    }
+    launch {
+        delay(2000)
+        println("Done")
+    }
+}
+// (2 sec)
+// Done
+```
