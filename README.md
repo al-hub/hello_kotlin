@@ -29,7 +29,7 @@ dispatcher
   
 - 기타  
   - Boilerplate 
-<details>
+  - <details>
 <summary> java vs kotlin </summary>
 
 ```java
