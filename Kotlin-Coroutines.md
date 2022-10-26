@@ -24,4 +24,18 @@ fun main(args: Array<String>) = runBlocking {
 ## advanced
 Scope, Job, launch(async), suspend, cancel/exception, try-catch  
 ```kotlin
+
+suspend fun susCustom(): Unit{
+  yeild()
+  println("custom suspend function")
+}
+
+fun main() {
+  val scope = CoroutineScope(Job())
+  val job = scope.launch(Dispatchers.IO) {    
+      launch {
+        throw RuntimeException("oops")
+      }    
+  }
+}
 ```
