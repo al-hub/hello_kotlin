@@ -128,8 +128,36 @@ main에 delay를 넣으면 기대처럼 될 수도 있으나 테스트가 느려
     - inclusive한 현재시간까지 들어오게 하려면 runCurrent() 사용
   - advanceUntilIdle()
     - 갈때까지 끝까지 다가라  
+예시
+```kotlin
+    @Test
+    fun `runCurrent & advanceUntilIdle demo`() = runTest {
+        var state = 0
+        launch {
+            state = 1
+            yield()
+            state = 2
+            delay(1000)
+            state = 3
+            delay(1000)
+            state = 4
+            delay(1000)
+            state = 5
+        }
+        assertThat(state).isEqualTo(0)
+        log("$currentTime")
+        
+        runCurrent()
+        assertThat(state).isEqualTo(2)
+        log("$currentTime")
 
-Quiz1
+        advanceUntilIdle()
+        assertThat(state).isEqualTo(5)
+        log("$currentTime")
+    }
+```
+
+Quiz1(StandardTestDispatcher)
 ```
     @Test
     fun `virtual time control - StandardTestDispatcher`() = runTest {
@@ -147,7 +175,7 @@ Quiz1
 ```
 Quiz1-Ans: TODO() is '0'
 
-Quiz2
+Quiz2(UnconfinedCoroutineDispatcher)
 ```
     @Test
     fun `virtual time control - UnconfinedCoroutineDispatcher - eager`() = runTest(UnconfinedTestDispatcher()) {
