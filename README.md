@@ -6,7 +6,7 @@ structured concurrency
 dispatcher  
 : 어떤 threadpool에서 사용할 지, thread에 coroutine을 보낸다.([예시](https://kotlinworld.com/141))     
 
-- coroutine 
+- [coroutine](https://myungpyo.medium.com/reading-coroutine-official-guide-thoroughly-part-0-20176d431e9d) 
   - scope  
   - lanch, async, runBlocking  
   - job  
