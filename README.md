@@ -88,3 +88,5 @@ dispatcher
 
 - 플락션(flection) 코드 ??  
 
+구글에서 설명하는 코루틴 : https://www.youtube.com/watch?v=w0kfnydnFWI&t=17s
+코루틴 대장(Roman Elizarov) :  https://www.youtube.com/watch?v=_hfBv0a09Jc&t=22s
