@@ -22,7 +22,7 @@ dispatcher
   - type val var
   - class Persion
   - NullException이 중요한 이유
-  - 스트림
+  - [스트림](https://madplay.github.io/post/difference-between-map-and-flatmap-methods-in-java)
   - flatMap
   - List<List<>>
   - [let, with](https://www.youtube.com/watch?v=RBGHA1cYsRM&list=PLg3A12oL1JCO5YhYFqDUM-_NcBy32-Bd2&index=11), [also](https://0391kjy.tistory.com/50), apply
