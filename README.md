@@ -22,6 +22,9 @@ dispatcher
   - type val var
   - class Persion
   - NullException이 중요한 이유
+  - 스트림
+  - flatMap
+  - List<List<>>
   - [let, with](https://www.youtube.com/watch?v=RBGHA1cYsRM&list=PLg3A12oL1JCO5YhYFqDUM-_NcBy32-Bd2&index=11), [also](https://0391kjy.tistory.com/50), apply
   - [callback](https://stackoverflow.com/questions/824234/what-is-a-callback-function)  
   - block, non-block  
