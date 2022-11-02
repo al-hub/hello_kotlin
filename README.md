@@ -33,6 +33,7 @@ dispatcher
   - [함수타입(+lambda)](https://youtu.be/xZrSadIO6Mg?list=PLg3A12oL1JCNke34RZ-WApabuvQsfSWPv&t=751)
   - lambda with recieve  
 
+
 - Try This
   - JUnit
   - LiveData (observerable view holder) study 필요  
