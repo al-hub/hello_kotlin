@@ -27,12 +27,38 @@ dispatcher
   - [List<List<>>](https://codechacha.com/ko/java-initialize-list-of-list/)
   - [object](https://codechacha.com/ko/kotlin-object-vs-class/)
   - [let, with](https://www.youtube.com/watch?v=RBGHA1cYsRM&list=PLg3A12oL1JCO5YhYFqDUM-_NcBy32-Bd2&index=11), [also](https://0391kjy.tistory.com/50), apply
-  - [callback](https://stackoverflow.com/questions/824234/what-is-a-callback-function)  
+  - [callback](https://stackoverflow.com/questions/824234/what-is-a-callback-function) 
   - block, non-block  
   - sync , async  
   - [함수타입(+lambda)](https://youtu.be/xZrSadIO6Mg?list=PLg3A12oL1JCNke34RZ-WApabuvQsfSWPv&t=751)
   - lambda with recieve  
 
+<details>
+<summary>callbackInKotlin</summary>
+
+```kotlin
+fun caller(callback: () -> Unit) {
+    println("\nrun")
+    callback()
+}
+
+fun cbClassic() {
+    println("cb_classic")
+}
+
+val cbModern = {
+    println("cb_mordern")
+}
+
+fun main() {
+    caller(::cbClassic) //refer to function: use funtion reference operation in kotlin
+    caller(cbModern)
+    
+    caller({ println("lambda: directly into a function") })
+    caller() { println("lambda: after the closing parenthesis") } 
+}
+```
+<summary>
 
 - Try This
   - JUnit
