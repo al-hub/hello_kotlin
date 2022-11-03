@@ -18,7 +18,7 @@ dispatcher
   - job  
   - dispatcher  
 
-- [kotlin basic](https://developer.android.com/codelabs/basic-android-kotlin-compose-function-types-and-lambda?hl=ko#0)
+- [kotlin basic](https://developer.android.com/codelabs/basic-android-kotlin-compose-function-types-and-lambda?hl=ko#0) [2](https://develop-writing.tistory.com/65)
   - type val var
   - class Persion
   - NullException이 중요한 이유
