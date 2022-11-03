@@ -58,7 +58,7 @@ fun main() {
     caller() { println("lambda: after the closing parenthesis") } 
 }
 ```
-<summary>
+</details>
 
 - Try This
   - JUnit
