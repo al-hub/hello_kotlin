@@ -32,6 +32,7 @@ dispatcher
   - sync , async  
   - [함수타입(+lambda)](https://youtu.be/xZrSadIO6Mg?list=PLg3A12oL1JCNke34RZ-WApabuvQsfSWPv&t=751)
   - lambda with recieve  
+  - [invoke:람다의비밀](https://wooooooak.github.io/kotlin/2019/03/21/kotlin_invoke/)
 
 <details>
 <summary>callbackInKotlin</summary>
