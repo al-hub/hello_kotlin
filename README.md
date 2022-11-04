@@ -96,6 +96,45 @@ class Test {
     }
 }
 ```
+
+CPS
+```
+fun addCPS(a: Int, b:Int, cont: (Int) -> Int): Int = cont(a+b)
+
+fun factCPS(n: Long, cont: (Long) -> Long): Long =
+    when(n) {
+        0L -> cont(1L)
+        else -> factCPS(n-1) { prev ->
+            cont(n+prev)
+        }
+    }
+
+fun main() {
+    //val ret1 = addCPS(1, 2, { it })
+    //val ret1 = addCPS(1, 2){ it }
+
+    val ret1 = addCPS(1, 2) { i -> i } 
+    println("${ret1}")
+ 
+	/* 
+    val ret2 = addCPS(1, 2, { step1 ->
+        			addCPS(3, 4, { step2 ->
+        			    addCPS(step1, step2, { it })
+                    })        
+    			})
+    */
+    val ret2 = addCPS(1, 2) { step1 ->
+        			addCPS(3, 4) { step2 ->
+        			    addCPS(step1, step2) { it } 
+        			}        
+    			}
+    
+    println("${ret2}")
+    
+    val fact = factCPS(10) { it }
+    println("${fact}")
+}
+```
 </details>
 
 - Try This
