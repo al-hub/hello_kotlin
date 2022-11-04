@@ -59,6 +59,43 @@ fun main() {
     caller() { println("lambda: after the closing parenthesis") } 
 }
 ```
+
+https://stackoverflow.com/questions/48181751/get-name-of-current-function-in-kotlin
+https://www.techiedelight.com/ko/get-name-current-function-kotlin/
+https://stackoverflow.com/questions/45165143/get-type-of-a-variable-in-kotlin
+https://kotlinlang.org/docs/reflection.html#bound-class-references
+```
+Thread.currentThread().stackTrace[1].methodName
+val name = object{}.javaClass.enclosingMethod.name
+ class Main
+    val name: String = Main::class.java.enclosingMethod.name
+
+val name = Throwable().stackTrace[0].methodName
+val name = Exception().stackTrace[0].methodName
+val name = Thread.currentThread().stackTrace[1].methodName
+
+
+println(Int::class.simpleName)    // "Int"
+println(Int::class.qualifiedName) // "kotlin.Int"
+ 
+val value="value"
+println(value::class.java.typeName)
+
+//instance::method.name
+
+fun main() {
+    val test = Test()
+    test.methodA()
+    println("The name of method is ${test::methodA.name}")
+}
+
+class Test {
+    fun methodA() {
+        println("Executing method ${this::methodA.name}")
+        println("Executing method ${::methodA.name} - without explicit this")
+    }
+}
+```
 </details>
 
 - Try This
@@ -69,6 +106,7 @@ fun main() {
   
   
 - [Boilerplate](https://gmunch.github.io/2019/07/15/why-kotlin.html)
+
 <details>
 <summary> java vs kotlin </summary>
 
