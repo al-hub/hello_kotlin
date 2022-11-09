@@ -22,6 +22,8 @@ public final class 기본
 val: value (읽기 전용)  
 var: variable  
 
+object 지금당장 객체를 만든다. (singleton)  
+
 
 data class  
 decompile 시, main 쪽은 거의 비슷하나   
