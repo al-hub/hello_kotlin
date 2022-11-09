@@ -10,7 +10,7 @@
 - fun   : f + enter (자동생성) 
 - 자동코드 : ctrl + i
 
-
+## 개념
 kotlin class 만들면 무조건 final class를 만든다.  
 함수를 호출하는 느낌으로 class 사용한다.  
 
@@ -19,23 +19,28 @@ kotlin Bytecode
 public final class 기본  
 
 
-
 val: value (읽기 전용)  
 var: variable  
 
-추가라이브러리 설치(android studio, kotlin) kotlin-coroutines-android:1.6.4   
 
 data class  
 decompile 시, main 쪽은 거의 비슷하나   
 component1, component2, copy, toString, hashCode, equals 이 미리 정의되어 있다.(효과)     
 println(p) 등을 했을때, 알아서 깔끔하게 정의&출력이 된다.  
 
+## 설정
+추가라이브러리 설치(android studio, kotlin) kotlin-coroutines-android:1.6.4   
+
+## 특징
 즉, boilerplate code를 알아서 만들어 준다.  
 
 함수끝에 lambda 는 후행처리로 하는게 낫다.  
 (coroutine과 연관)
 
-class 상속  
+? -> null 이 될 수 있다.  
+
+
+## class 상속  
 kotlin의 상속은 : 을 사용함  (java Extends )
 
 private class 만들고, 코드 안에서  
@@ -44,10 +49,6 @@ secondary constructor로 전부선택 후, 생성
 
 private fun  
 코틀린은 탑레벨도 private method 로 될 수 도 있다.  
-
-
-## kotlin 
-? -> null 이 될 수 있다.  
 
 
 ## higher-order function  
