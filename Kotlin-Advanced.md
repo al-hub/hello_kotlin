@@ -1,8 +1,8 @@
 
 ctrl + shift + p : 타입확인  
-f + enter 방식 자동화 코드
-ctrl + q : 도움말
-ctrl + b : declare (내부로 들어가서 분석)
+f + enter 방식 자동화 코드  
+ctrl + q : 도움말  
+ctrl + b : declare (내부로 들어가서 분석)  
 
 kotlin class 만들면 무조건 final class를 만든다.  
 함수를 호출하는 느낌으로 class 사용한다.  
