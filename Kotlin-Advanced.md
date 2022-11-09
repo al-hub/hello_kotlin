@@ -72,9 +72,9 @@ private fun
 - FutionReference 기존함수를 그대로 써 먹고 싶다.  
 
 ## [Scope Functions](https://blog.yena.io/studynote/2020/04/15/Kotlin-Scope-Functions.html)
-Lambda를 사용한다.  
+주요한 확장함수 ( 내부적으로 Lambda를 사용 )  
 - apply
- - configuration기능
+  - configuration기능
 
 - let
 - run
