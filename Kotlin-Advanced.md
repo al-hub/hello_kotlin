@@ -25,6 +25,8 @@ println(p) 등을 했을때, 알아서 깔끔하게 정의&출력이 된다.
 
 즉, boilerplate code를 알아서 만들어 준다.  
 
+함수끝에 lambda 는 후행처리로 하는게 낫다.  
+(coroutine과 연관)
 
 class 상속  
 kotlin의 상속은 : 을 사용함  (java Extends )
