@@ -70,3 +70,12 @@ private fun
 ## Function Literal
 - Lambda, Anonymous Function (개념: 함수가 필요하면 지금 당장 만들어 쓴다 )
 - FutionReference 기존함수를 그대로 써 먹고 싶다.  
+
+## Scope Functions
+Lambda를 사용한다.  
+- let
+- aply
+- run
+- with
+- also
+- takeIf
