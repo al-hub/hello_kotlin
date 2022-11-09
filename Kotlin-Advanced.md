@@ -8,7 +8,7 @@
 - 탐색   : ctrl + b ( declare 함수 내부로 분석, ctrl + left/right 이전 이후 )  
 
 - fun   : f + enter (자동생성) 
-- 자동코드 : ctrl + i
+- 자동코드 : ctrl + i (implementation)
 
 ## 개념
 kotlin class 만들면 무조건 final class를 만든다.  
