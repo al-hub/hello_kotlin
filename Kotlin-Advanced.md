@@ -1,8 +1,15 @@
 
-ctrl + shift + p : 타입확인  
-f + enter 방식 자동화 코드  
-ctrl + q : 도움말  
-ctrl + b : declare (내부로 들어가서 분석)  
+## TIP  
+- 주석  : shift + / 
+
+- 타입  : ctrl + shift + p : 타입확인  
+- 도움말 : ctrl + q 
+
+- 탐색   : ctrl + b ( declare 함수 내부로 분석, ctrl + left/right 이전 이후 )  
+
+- fun   : f + enter (자동생성) 
+- 자동코드 : ctrl + i
+
 
 kotlin class 만들면 무조건 final class를 만든다.  
 함수를 호출하는 느낌으로 class 사용한다.  
@@ -39,21 +46,19 @@ private fun
 코틀린은 탑레벨도 private method 로 될 수 도 있다.  
 
 
-
-kotlin 
+## kotlin 
 ? -> null 이 될 수 있다.  
 
 
-
-higher-order function  
+## higher-order function  
 하나의 함수를 여러가지 시나리오로 써 먹을수 있다.  
 -> 실행시에 함수 결정 (functional program)  -> 즉 개발자가 전달하는 순간에 결정됨   
 
 
-##객체지향 프로그래밍  
+## 객체지향 프로그래밍  
 객체중심  
 
-##함수형 프로그래밍  
+## 함수형 프로그래밍  
 함수중심  
 
 
