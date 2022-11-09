@@ -3,7 +3,7 @@
 - 주석  : shift + / 
 
 - 타입  : ctrl + shift + p : 타입확인  
-- 도움말 : ctrl + q 
+- 도움말 : ctrl + q ( 설명을 읽을 수 있어야 한다 , T R )
 
 - 탐색   : ctrl + b ( declare 함수 내부로 분석, ctrl + left/right 이전 이후 )  
 
@@ -71,10 +71,12 @@ private fun
 - Lambda, Anonymous Function (개념: 함수가 필요하면 지금 당장 만들어 쓴다 )
 - FutionReference 기존함수를 그대로 써 먹고 싶다.  
 
-## Scope Functions
+## [Scope Functions](https://blog.yena.io/studynote/2020/04/15/Kotlin-Scope-Functions.html)
 Lambda를 사용한다.  
+- apply
+ - configuration기능
+
 - let
-- aply
 - run
 - with
 - also
