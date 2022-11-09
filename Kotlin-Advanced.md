@@ -33,6 +33,10 @@ private class 만들고, 코드 안에서
 anroid studio : code -> generator (Alt + Ins)  
 secondary constructor로 전부선택 후, 생성  
 
+private fun  
+코틀린은 탑레벨도 private method 로 될 수 도 있다.  
+
+
 
 kotlin 
 ? -> null 이 될 수 있다.  
