@@ -48,4 +48,10 @@ higher-order function
 -> 실행시에 함수 결정 (functional program)  -> 즉 개발자가 전달하는 순간에 결정됨   
 
 
+##객체지향 프로그래밍
+객체중심  
+
+##함수형 프로그래밍
+함수중심  
+
 
