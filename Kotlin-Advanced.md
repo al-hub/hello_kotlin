@@ -207,4 +207,13 @@ inline fun <reified T> printT(any: Any) {
 ```
  
 ## Concurrency  
-
+- Thread
+- Executor
+  - NetworkService 예제: ExecutorService.execute 로 사용 ( submit 과 비슷 )
+- RaceConditions
+  - synchronized
+  - val lock = ReentrantLock(), lock.tryLock(), lock.unlock() 재진입 가능함
+  - lock.lockInterruptibly()
+  - lock.withLock
+- semaphore
+  - 변수로 var sem = 가용 자원의 갯 수, sem+=1, sem-=1 으로 제어하다가 sem==0 이면, 잠자게 구현은 못 한다. (매우어렵다)
