@@ -208,7 +208,7 @@ inline fun <reified T> printT(any: Any) {
  
 ## Concurrency  
 - Thread
-  - 기본방식: val t = thread { } , flag에 @Volatile 사용한 부분 인지할 것( 컴파일러에 따라 annotation 없으면 무시될 수 있음)
+  - 기본방식: val t = thread { } , flag에 **@Volatile** 사용한 부분 인지할 것( 컴파일러에 따라 annotation 없으면 무시될 수 있음)
   - producer, consumer 방식에서 단순 flag만 사용 시, queue.take() 로 인해 consumer가 안 끝날 수 도 있음
   - Thread.interrupted() 로 해결 될 수 있음  
  
