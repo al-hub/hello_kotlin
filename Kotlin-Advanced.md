@@ -77,7 +77,20 @@ private fun
   - configuration기능
 
 - let
+  - lamdba의 맨 마지막 expression을 return으로 출력 함
+   
 - run
+  - 입력은 apply, 출력은 let 처럼 ( receive 암시 )
+   
 - with
+  - run의 변종
+  - receive를 직접넣는다. 
+  
 - also
-- takeIf
+  - let하고 비슷, 이것도 하고 저것도 하고
+  
+ 
+## Generics  
+어떤 타입으로 작동할지 결정되지 않은 상태에서 함수를 만들어 놓고,  
+실 사용할 때는 서로다른 종류의 타입에 대해서 실 사용 가능하도록 작성하는 것  
+(함수, 클래스 다 사용, 자바에서는 처음에 없었음, c++에서 template, parametric polymorphism 이라고도 부름)  
