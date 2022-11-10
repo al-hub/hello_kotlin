@@ -32,6 +32,9 @@ decompile 시, main 쪽은 거의 비슷하나
 component1, component2, copy, toString, hashCode, equals 이 미리 정의되어 있다.(효과)     
 println(p) 등을 했을때, 알아서 깔끔하게 정의&출력이 된다.  
 
+
+predicate: 함수를 통과 시킨다.
+
 ## 설정
 추가라이브러리 설치(android studio, kotlin) kotlin-coroutines-android:1.6.4   
 
