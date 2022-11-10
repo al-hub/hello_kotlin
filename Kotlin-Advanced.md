@@ -100,7 +100,15 @@ private fun
 실 사용할 때는 서로다른 종류의 타입에 대해서 실 사용 가능하도록 작성하는 것  
 (함수, 클래스 다 사용, 자바에서는 처음에 없었음, c++에서 template, parametric polymorphism 이라고도 부름)  
 
-## out / in
+
+## Covariance ( out 을 사용한다. )
+사과 -> 과일
+
+## Conravariance ( in 을 사용한다 )
+과일 <- 사과  
+Box<String> would be a supertype BOX<Any>  
+ 
+### out / in 예제
 ```kotlin
 fun main() {
         //당연히 에러 나는 코드
@@ -127,12 +135,6 @@ class MyClass2<out T> {}
 class MyClass3<in T> {}
 ```
 
-## Covariance ( out 을 사용한다. )
-사과 -> 과일
-
-## Conravariance ( in 을 사용한다 )
-과일 <- 사과
-Box<String> would be a supertype BOX<Any>  
  
 
  
