@@ -208,12 +208,30 @@ inline fun <reified T> printT(any: Any) {
  
 ## Concurrency  
 - Thread
-- Executor
-  - NetworkService 예제: ExecutorService.execute 로 사용 ( submit 과 비슷 )
-- RaceConditions
-  - synchronized
-  - val lock = ReentrantLock(), lock.tryLock(), lock.unlock() 재진입 가능함
-  - lock.lockInterruptibly()
-  - lock.withLock
-- semaphore
-  - 변수로 var sem = 가용 자원의 갯 수, sem+=1, sem-=1 으로 제어하다가 sem==0 이면, 잠자게 구현은 못 한다. (매우어렵다)
+  - 기본방식: val t = thread { } , flag에 @Volatile 사용한 부분 인지할 것( 컴파일러에 따라 annotation 없으면 무시될 수 있음)
+  - producer, consumer 방식에서 단순 flag만 사용 시, queue.take() 로 인해 consumer가 안 끝날 수 도 있음
+  - Thread.interrupted() 로 해결 될 수 있음  
+ 
+- Executor  
+  - NetworkService 예제: ExecutorService.execute 로 사용 ( submit 과 비슷 )  
+ 
+- RaceConditions  
+  - synchronized  
+  - val lock = ReentrantLock(), lock.tryLock(), lock.unlock() 재진입 가능 함  
+  - lock.lockInterruptibly()  
+  - lock.withLock  
+ 
+- semaphore  
+  - 가용자원의 유지관리  
+  - 변수로 var sem = 가용 자원의 갯 수, sem+=1, sem-=1 으로 제어하다가 sem==0 이면, 잠자게 구현은 못 한다. (매우어렵다)  
+ 
+  - brokenBufferImpl 일반적인 list 방식으로는 안전하지 않다. 
+    - 문제있는부분 [producer]: if (buffer.size < maxSize) , [consumer]: if (buffer.size > 0) {  
+ 
+  - semaphore1 예시) val emptyCount = Semaphore(8), val fillCount = Semaphore(0)
+    - [producer]: emptyCount.acquire() - fillCount.release()
+    - [consumer]: fillCount.acquire()  - emptyCount.release()  
+ 
+  - semaphore2 예시) val mutex = Semaphore(1) 추가
+    - [producer]: emptyCount.acquire() mutex.acquire() - mutex.release() fillCount.release()
+    - [consumer]: fillCount.acquire()  mutex.acquire() - mutex.release() emptyCount.release()
