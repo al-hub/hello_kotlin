@@ -285,7 +285,7 @@ fun main() {
   - 빗장 개념과 빗하긴 함, 모든 쓰레드가 전부다 기다린다.
   - 특정 요구되는 지점까지 모든 쓰레드가 기다리게 만들어 보고 싶다.
     - copyUsingBarrier 예제) 파일의 목록을 가지고 있다. 목록이 준비되면, 여러 디렉토리에 복사 할 것 이다.
-    - val barrier = CyclicBarrier(outputDirectories.size)
+    - val **barrier** = CyclicBarrier(outputDirectories.size)
     - for (dir in outputDirectories) { executor.submit { CopyTask(dir, inputFiles, barrier) } }
     - class CopyTask(val dir: Path, val paths: List<Path>, val barrier: CyclicBarrier) {
-    - fun run() { for(path in paths) { - barrier.await() - } }  
+    - fun run() { for(path in paths) { - **barrier.await()** - } }  
