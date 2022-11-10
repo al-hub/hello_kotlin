@@ -233,7 +233,7 @@ inline fun <reified T> printT(any: Any) {
     - [producer]: emptyCount.acquire() - fillCount.release()
     - [consumer]: fillCount.acquire()  - emptyCount.release()  
  
-  - semaphore2 예시) val mutex = Semaphore(1) 추가 (mutual exclusion)
+  - semaphore2 예시) val mutex = Semaphore(1) 추가 (mutual exclusion, synchronized로도 구현해도 됨)
     - [producer]: emptyCount.acquire() mutex.acquire() - mutex.release() fillCount.release()
     - [consumer]: fillCount.acquire()  mutex.acquire() - mutex.release() emptyCount.release()
  
