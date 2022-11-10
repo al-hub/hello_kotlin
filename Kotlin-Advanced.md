@@ -152,4 +152,24 @@ fun isSafe2(crate: Crate<out Fruit>): Boolean =
     crate.elements.all { it.isSafeToEat() }
 ```
  
+```kotlin
+import java.math.BigDecimal
  
+fun main() {
+    /* Contravariance sample */
+    val loggingListener = object : Listener2<Any> {
+        override fun onNext(t: Any) = println(t)
+    }
+    EventStream2<Double>(loggingListener).start()
+    EventStream2<BigDecimal>(loggingListener).start()
+}
+ 
+interface Listener2<T> {
+    fun onNext(t: T): Unit
+}
+
+class EventStream2<T>(val listener: Listener2<in T>) {
+    fun start(): Unit = TODO()
+    fun stop(): Unit = TODO()
+}
+```
