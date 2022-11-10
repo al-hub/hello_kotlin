@@ -265,3 +265,12 @@ fun main() {
     }
 }
 ```
+- Atomics
+  - 여러개 thread가 접근할 때는 단 하나의 변수도 보호해야 한다.
+  - basic
+    - val counter = AtomicLong(0)         //초기값은 0
+    - val id = counter.incrementAndGet()  //쓰레드 내에서 중간에 다른값을 끼어 들지 않도록 유지함, 같은 숫자는 나올 수 없다.
+  - atomicReference
+    - val ref = AtomicReference<Connection>()
+    - ref.compareAndSet(null, openConnection()) //null 경우만 적용하는 것
+ 
