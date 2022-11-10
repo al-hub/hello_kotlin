@@ -135,7 +135,21 @@ class MyClass2<out T> {}
 class MyClass3<in T> {}
 ```
 
+## Nothing Type
+//Nothing 비어있는 것 ( 모든것의 subclass )  
+//Type으로만 사용, 객체가 있는것은 아니다. (다른 모든 것과 호환된다.)  
  
 
+## Type Projection
+일반형을 Covarinace 또는 Contravariance 관계로 만들어 써 보자  
+```kotlin
+class Crate<T>(val elements: MutableList<T>) {
+    fun add(t: T) = elements.add(t)
+    fun last(): T = elements.last()
+}
+
+fun isSafe2(crate: Crate<out Fruit>): Boolean =
+    crate.elements.all { it.isSafeToEat() }
+```
  
  
