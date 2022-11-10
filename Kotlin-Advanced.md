@@ -222,7 +222,7 @@ inline fun <reified T> printT(any: Any) {
   - lock.withLock  
  
 - semaphore  
-  - 가용자원의 유지관리  
+  - 가용자원의 유지관리 (sing thread 를 쓰면서 자료보호)  
   - 변수로 var sem = 가용 자원의 갯 수, sem+=1, sem-=1 으로 제어하다가 sem==0 이면, 잠자게 구현은 못 한다. (매우어렵다)  
  
   - brokenBufferImpl 일반적인 list 방식으로는 안전하지 않다. 
