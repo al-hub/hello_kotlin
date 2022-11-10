@@ -240,6 +240,8 @@ inline fun <reified T> printT(any: Any) {
   - mutableListOf 등은 thread 환경에서 안전하지 못하다.
   - 성능을 좀 낮추더라도 안정적으로 사용하는 방법
   - import java.util.concurrent.LinkedBlockingQueue
+  - 핵심 val buffer = LinkedBlockingQueue<Int>()
+ 
 ```kotlin
 import java.util.*
 import java.util.concurrent.LinkedBlockingQueue
