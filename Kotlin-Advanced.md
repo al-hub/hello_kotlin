@@ -102,3 +102,7 @@ private fun
 
 ## in / out
 
+## Conravariance ( in 을 사용한다 )
+Box<String> would be a supertype BOX<Any>  
+ 
+ 
