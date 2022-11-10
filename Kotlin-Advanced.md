@@ -36,6 +36,7 @@ println(p) 등을 했을때, 알아서 깔끔하게 정의&출력이 된다.
 
 
 predicate: 함수를 통과 시킨다.
+block: () -> Unit 인자로 람다 argument로 사용하는 함수호출 구조
 
 ## 설정
 추가라이브러리 설치(android studio, kotlin) kotlin-coroutines-android:1.6.4   
