@@ -213,6 +213,7 @@ inline fun <reified T> printT(any: Any) {
   - Thread.interrupted() 로 해결 될 수 있음  
  
 - Executor  
+  - executor.submit { }
   - NetworkService 예제: ExecutorService.execute 로 사용 ( submit 과 비슷 )  
  
 - RaceConditions  
@@ -274,3 +275,17 @@ fun main() {
     - val ref = AtomicReference<Connection>()
     - ref.compareAndSet(null, openConnection()) //null 경우만 적용하는 것
  
+- CountDownLatch
+  - 부가적인 동기화 기능, Latch는 빗장(걸쇠), 나 하나만 기다린다.
+    - val latch = CountDownLatch(feeds.size)
+    - latch.countDown() 빗장을 푸는 행위
+    - latch.await()
+ 
+- CyclicBarrier
+  - 빗장 개념과 빗하긴 함, 모든 쓰레드가 전부다 기다린다.
+  - 특정 요구되는 지점까지 모든 쓰레드가 기다리게 만들어 보고 싶다.
+    - copyUsingBarrier 예제) 파일의 목록을 가지고 있다. 목록이 준비되면, 여러 디렉토리에 복사 할 것 이다.
+    - val barrier = CyclicBarrier(outputDirectories.size)
+    - for (dir in outputDirectories) { executor.submit { CopyTask(dir, inputFiles, barrier) } }
+    - class CopyTask(val dir: Path, val paths: List<Path>, val barrier: CyclicBarrier) {
+    - fun run() { for(path in paths) { - barrier.await() - } }  
