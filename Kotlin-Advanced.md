@@ -232,6 +232,34 @@ inline fun <reified T> printT(any: Any) {
     - [producer]: emptyCount.acquire() - fillCount.release()
     - [consumer]: fillCount.acquire()  - emptyCount.release()  
  
-  - semaphore2 예시) val mutex = Semaphore(1) 추가
+  - semaphore2 예시) val mutex = Semaphore(1) 추가 (mutual exclusion)
     - [producer]: emptyCount.acquire() mutex.acquire() - mutex.release() fillCount.release()
     - [consumer]: fillCount.acquire()  mutex.acquire() - mutex.release() emptyCount.release()
+ 
+- ConcurrentCollection
+  - mutableListOf 등은 thread 환경에서 안전하지 못하다.
+  - 성능을 좀 낮추더라도 안정적으로 사용하는 방법
+  - import java.util.concurrent.LinkedBlockingQueue
+```kotlin
+import java.util.*
+import java.util.concurrent.LinkedBlockingQueue
+import kotlin.concurrent.thread
+
+fun main() {
+    val buffer = LinkedBlockingQueue<Int>()
+
+    thread {
+        val random = Random()
+        while (true) {
+            buffer.put(random.nextInt(1, 100))
+        }
+    }
+
+    thread {
+        while (true) {
+            val item = buffer.take()
+            println("Consumed item $item")
+        }
+    }
+}
+```
