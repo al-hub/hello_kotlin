@@ -400,7 +400,7 @@ fun main() {
     }
 }
 ```
-- CoroutinesWithThread
+- CoroutinesWithThread ( java의 thread를 coroutine의 dispatcher로 입력하는 예제)  
 ```kotlin
 fun main() {
 
