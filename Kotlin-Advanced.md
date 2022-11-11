@@ -345,3 +345,18 @@ fun main() {
 }
 ```
 main thread를 사용하기때문에 실전(android)에서 바로 사용하면 다른기능들이 먹통이 된다.   
+
+- android app 개발 실전예제 시, 주의사항
+ 
+```kotlin
+//...
+private var x = 0
+private var job: Job? =null
+//...     
+
+job?.cancel()
+//..
+
+job = GlobalScope.launch { .. delay() .. }
+
+```
