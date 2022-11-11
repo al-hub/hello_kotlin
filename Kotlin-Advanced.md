@@ -367,3 +367,13 @@ Coroutine -- Coroutine Context -- Coroutine Scope
                                      launch()
 ```
  
+- adroid app 개발 시, interface 상속을 이용하여 사용하자 (기본작업)
+```kotlin
+class MainActivity : AppCompatActivity() , CoroutineScope {
+
+    private val job = SupervisorJob()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Default + job
+ 
+ //..
+```
