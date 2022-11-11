@@ -300,7 +300,8 @@ Cooperation Routines
 
 C에도 비슷한 setjmp()와 longjmp() 가 있다.  
 
-  
+blocking 문제를 피하자  
+ 
 - Basic Code
 ```kotlin
 fun main() {
