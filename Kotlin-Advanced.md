@@ -301,5 +301,6 @@ Cooperation Routines
 C에도 비슷한 setjmp()와 longjmp() 가 있다.  
   
   
-  
+- GlobalScope
+ public object GlobalScope : CoroutineScope { 
 
