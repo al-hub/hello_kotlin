@@ -298,6 +298,7 @@ Cooperation Routines
  
 콜백을 쓰면 싱글쓰레드로 사용할 수 있으나 많이 쓰면 코드가 복잡해 진다. (callback hell)  
 
+C에도 비슷한 setjmp()와 longjmp() 가 있다.  
   
   
   
