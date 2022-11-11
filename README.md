@@ -1,4 +1,5 @@
 # [Learn Kotlin](https://developer.android.com/courses)
+- [ ] [IntelliJ IDEA. Tips for Writing Code](https://www.youtube.com/watch?v=_Y1y8k-OTCQ)
 - [ ] [Kotlin부트캠프](https://developer.android.com/courses/kotlin-bootcamp/overview?hl=ko) 소개, 함수, 클래스, 확장, 일반, 함수조작
 - [ ] [Andorid Kotlin 기초](https://developer.android.com/courses/kotlin-android-fundamentals/overview?hl=ko) 빌드, 레이아웃, 탬색, 활동, 프래그먼트, 아키텍처, 룸, 코루틴, RecyclerView, 인터넷, 저장소, 디자인
 - [ ] [Andorid Kotlin 고급](https://developer.android.com/courses/kotlin-android-advanced/overview?hl=ko) 알림, 그래픽, 애니메이션, 지역, 테스트, 로그인
