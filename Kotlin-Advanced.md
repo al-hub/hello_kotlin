@@ -380,7 +380,7 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
         launch {
             repeat(100) {
                 delay(1000)
-                println("$it")
+                println("$it, ${Thread.currentThread().name}")
             }
         }
 
