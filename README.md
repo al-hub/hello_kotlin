@@ -1,5 +1,5 @@
 # [Learn Kotlin](https://developer.android.com/courses) 
-- [ ] [IntelliJ IDEA. Tips for Writing Code](https://www.youtube.com/watch?v=_Y1y8k-OTCQ) [유용함](https://gorokke.tistory.com/77) [응용ideavim](https://medium.com/harrythegreat/ideavim%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%EA%B0%80%EB%8A%A5%ED%95%9C-plugin-%EC%A0%95%EB%A6%AC-c3f49c6a705d)
+- [ ] [IntelliJ IDEA. Tips for Writing Code](https://www.youtube.com/watch?v=_Y1y8k-OTCQ) [유용함](https://gorokke.tistory.com/77) [응용ideavim](https://medium.com/harrythegreat/ideavim%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%EA%B0%80%EB%8A%A5%ED%95%9C-plugin-%EC%A0%95%EB%A6%AC-c3f49c6a705d) [f라이브템플릿](https://blog.jetbrains.com/ko/2020/05/18/write-code-faster-using-live-templates-ko/)
 - [ ] [Kotlin부트캠프](https://developer.android.com/courses/kotlin-bootcamp/overview?hl=ko) 소개, 함수, 클래스, 확장, 일반, 함수조작
 - [ ] [Andorid Kotlin 기초](https://developer.android.com/courses/kotlin-android-fundamentals/overview?hl=ko) 빌드, 레이아웃, 탬색, 활동, 프래그먼트, 아키텍처, 룸, 코루틴, RecyclerView, 인터넷, 저장소, 디자인
 - [ ] [Andorid Kotlin 고급](https://developer.android.com/courses/kotlin-android-advanced/overview?hl=ko) 알림, 그래픽, 애니메이션, 지역, 테스트, 로그인
