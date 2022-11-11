@@ -290,3 +290,12 @@ fun main() {
     - for (dir in outputDirectories) { executor.submit { CopyTask(dir, inputFiles, barrier) } }
     - class CopyTask(val dir: Path, val paths: List<Path>, val barrier: CyclicBarrier) {
     - fun run() { for(path in paths) { - **barrier.await()** - } }  
+
+## Coroutines  
+Cooperation Routines  
+  history 유지했다가 resume 하는 개념  
+  진입점이 여러개 있다.  
+  
+  
+  
+
