@@ -544,7 +544,7 @@ fun main() = runBlocking {
 -> counter가 다르게 나온다. (멀티쓰레드 문제로 동기화가 필요하다.)  
  
 
-해결책  
+해결책  (dispatcher를 생성한 하나로만 사용하게 한다.)  
 ```kotlin
 suspend fun massiveRun(action: suspend () -> Unit) {
     val n = 100  // number of coroutines to launch
