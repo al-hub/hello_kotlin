@@ -357,6 +357,6 @@ private var job: Job ? =null
 job?.cancel()
 //..
 
-job = GlobalScope.launch { .. delay() .. }
+job = GlobalScope.launch { .. delay(1) .. }
 
 ```
