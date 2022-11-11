@@ -316,3 +316,17 @@ fun main() {
   - public object GlobalScope : CoroutineScope { 
   - object로 만들어진 singleton 이다.
 
+- Thread.currentThread().name 출력
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(3000)
+        println("I am a croutine")
+        println("<launch> ${Thread.currentThread().name}")
+    }
+
+    println("I am the main thread")
+    println("<main> ${Thread.currentThread().name}")
+    Thread.sleep(5000)
+}
+```
