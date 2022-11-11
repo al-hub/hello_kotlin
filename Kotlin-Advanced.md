@@ -367,7 +367,7 @@ Coroutine -- Coroutine Context -- Coroutine Scope
                                      launch()
 ```
  
-- adroid app 개발 시, interface 상속을 이용하여 사용하자 (기본작업)
+- adroid app 개발 시, interface 상속을 이용하여 사용하자 (android app에서 기본작업)
 ```kotlin
 class MainActivity : AppCompatActivity() , CoroutineScope {
 
