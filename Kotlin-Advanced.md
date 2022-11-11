@@ -300,7 +300,19 @@ Cooperation Routines
 
 C에도 비슷한 setjmp()와 longjmp() 가 있다.  
   
-  
-- GlobalScope
- public object GlobalScope : CoroutineScope { 
+- Basic Code
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(3000)
+        print("I am a croutine")
+    }
+
+    println("I am the main thread")
+    Thread.sleep(5000)
+} 
+```
+- GlobalScope  
+  - public object GlobalScope : CoroutineScope { 
+  - object로 만들어진 singleton 이다.
 
