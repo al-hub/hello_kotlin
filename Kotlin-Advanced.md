@@ -403,21 +403,23 @@ fun main() {
 - CoroutinesWithThread
 ```kotlin
 fun main() {
-    
-    runBlocking {        
+
+    runBlocking {
         val executor = newSingleThreadExecutor { r ->
             Thread(r, "my-executor-dispatcher")
         }
         val dispatcher = executor.asCoroutineDispatcher()
 
         launch(dispatcher) {
+            delay(100)
             println(Thread.currentThread().name)
         }
 
         launch {
+            delay(100)
             println(Thread.currentThread().name)
         }
     }
-    
+
 }
 ```
