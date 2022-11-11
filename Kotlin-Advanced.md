@@ -574,3 +574,41 @@ fun main() = runBlocking {
     println("Counter = $counter")
 }
 ```
+## Flow  
+channel과 비슷한 개념 (channel은 que이나 flow는 que 아 님 )
+생산자, 소비자로 block ( que 없음 )
+
+일반적인 방법 (메모리를 사용한다.)
+```kotlin
+fun simple(): List<Int> = listOf(1, 2, 3)
+
+fun main() {
+    simple().forEach { value -> println(value) }
+}
+```
+
+coroutine을 쓰면서 메모리를 줄이자
+```kotlin
+fun simple(): Flow<Int> = flow { // flow builder
+    for (i in 1..3) {
+        delay(1000) // pretend we are doing something useful here
+        emit(i) // emit next value
+    }
+}
+
+fun main() = runBlocking {
+    // Collect the flow
+    val flow = simple()
+    flow.collect { value -> println(value) }
+    
+    //재사용 가능하고,
+    //flow.collect { value -> println(value) }
+
+    //중간에 cancel도 가능하다.
+    //withTimeoutOrNull(1500) { 
+    //    flow.collect { value -> println(value) }
+    //}
+}
+
+```
+ 
