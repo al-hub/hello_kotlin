@@ -443,7 +443,7 @@ fun main() {
 } 
 ```
 결과
-```shell
+```
 main: Starting
 A: running in new context
 B: running in new context
