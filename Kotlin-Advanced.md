@@ -295,6 +295,9 @@ fun main() {
 Cooperation Routines  
   history 유지했다가 resume 하는 개념  
   진입점이 여러개 있다.  
+ 
+콜백을 쓰면 싱글쓰레드로 사용할 수 있으나 많이 쓰면 코드가 복잡해 진다. (callback hell)  
+
   
   
   
