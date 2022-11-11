@@ -375,5 +375,14 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default + job
  
- //..
+ //<- 이제 launch를 마음대로 쓸수 있다. ...
+      
+        launch {
+            repeat(100) {
+                delay(1000)
+                println("$it")
+            }
+        }
+
+
 ```
