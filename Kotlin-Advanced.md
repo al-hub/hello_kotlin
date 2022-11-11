@@ -351,7 +351,7 @@ main thread를 사용하기때문에 실전(android)에서 바로 사용하면 �
 ```kotlin
 //...
 private var x = 0
-private var job: Job? =null
+private var job: Job ? =null
 //...     
 
 job?.cancel()
