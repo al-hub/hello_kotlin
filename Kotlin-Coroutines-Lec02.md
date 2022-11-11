@@ -371,7 +371,8 @@ object Custom_Dispatchers_Demo {
 - CoroutineScope() (기본형으로 사용하는 Factory function 임)
 - MainScope() (최근에는 사용할 필요성이 없음)
 - GlobalScope (ready made instance로 사용할수 있으나 권고하지 않음, 불필요한 리소스 낭비 가능성 있음)
-    - top level 생성됨으로 권고 하지 않는다.
+    - top-level coroutine 생성됨으로 권고 하지 않는다.
+    - do not keep the JVM alive (deamon thread와 같다고 보면 될 것 같음)
 - viewModelScope/lifecycleScope (Android 에서 사용 ready made object 임 , 유일하게 job 이 없음)
 - coroutineScope/supervisorScope (scope function의 개념으로 접근)
 
