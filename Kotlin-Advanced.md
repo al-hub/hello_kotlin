@@ -330,3 +330,15 @@ fun main() {
     Thread.sleep(5000)
 }
 ```
+
+- runBlocking
+```kotlin
+fun main() {
+    runBlocking {
+        delay(3000)
+        println("Hello World")
+        println("<runBlocking> ${Thread.currentThread().name}")
+    }
+    println("Done")
+}
+```
