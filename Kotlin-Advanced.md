@@ -299,6 +299,7 @@ Cooperation Routines
 콜백을 쓰면 싱글쓰레드로 사용할 수 있으나 많이 쓰면 코드가 복잡해 진다. (callback hell)  
 
 C에도 비슷한 setjmp()와 longjmp() 가 있다.  
+
   
 - Basic Code
 ```kotlin
@@ -315,6 +316,7 @@ fun main() {
 - GlobalScope  
   - public object GlobalScope : CoroutineScope { 
   - object로 만들어진 singleton 이다.
+  - 코루틴에서도 상황에 따라 동기화 문제가 발생할 수 있기 때문에 Thread Synchronization 필요할 수 있다.  
 
 - Thread.currentThread().name 출력
 ```kotlin
