@@ -450,3 +450,127 @@ B: running in new context
 main: Completing
 ```
  
+- channel  send/receive
+```kotlin
+fun main() {
+    runBlocking {
+        val channel = Channel<Int>(3)
+
+        launch {
+            for (k in 1..5) {
+                channel.send(k)
+                println("Sent element $k")
+            }
+        }
+
+        launch {
+            repeat(5) {
+                delay(10)
+                println("Received element " + channel.receive())
+            }
+        }
+    }
+}
+```
+- produce 기능
+```kotlin
+fun main() {
+    runBlocking {
+        val channel = produce {
+            for (k in 1..5) {
+                send(k)
+                delay(1000)
+            }
+        }
+        channel.consumeEach { println(it) }
+        println("Done!")
+    }
+}
+```
+- conflated 재미있는 예제: 내가 receive 하면 가장 최근것만 받는다.  
+
+```kotlin
+fun main() {
+    runBlocking {
+        val channel = Channel<Int>(CONFLATED)
+
+        launch {
+            for (k in 1..500) {
+                delay(10)
+                channel.send(k)
+                println("Sent element $k")
+            }
+        }
+
+        launch {
+            while (true) {
+                delay(25)
+                println("Received element " + channel.receive())
+            }
+        }
+    }
+}
+```
+## Coroutine 동기화 문제 
+suspend fun을 직접만들어 사용하는 동기화 문제 기본예제 (공식사이트에 등록되어 있음)
+```kotlin
+suspend fun massiveRun(action: suspend () -> Unit) {
+    val n = 100  // number of coroutines to launch
+    val k = 1000 // times an action is repeated by each coroutine
+    val time = measureTimeMillis {
+        coroutineScope { // scope for coroutines
+            repeat(n) {
+                launch {
+                    repeat(k) { action() }
+                }
+            }
+        }
+    }
+    println("Completed ${n * k} actions in ${time}ms")
+}
+
+var counter = 0
+
+fun main() = runBlocking {
+    withContext(Dispatchers.Default) {
+        massiveRun {
+            counter++
+        }
+    }
+    println("Counter = $counter")
+}
+
+```
+-> counter가 다르게 나온다. (멀티쓰레드 문제로 동기화가 필요하다.)  
+ 
+
+해결책  
+```kotlin
+suspend fun massiveRun(action: suspend () -> Unit) {
+    val n = 100  // number of coroutines to launch
+    val k = 1000 // times an action is repeated by each coroutine
+    val time = measureTimeMillis {
+        coroutineScope { // scope for coroutines
+            repeat(n) {
+                launch {
+                    repeat(k) { action() }
+                }
+            }
+        }
+    }
+    println("Completed ${n * k} actions in ${time}ms")
+}
+
+val counterContext = newSingleThreadContext("CounterContext")
+var counter = 0
+
+fun main() = runBlocking {
+    // confine everything to a single-threaded context
+    withContext(counterContext) {
+        massiveRun {
+            counter++
+        }
+    }
+    println("Counter = $counter")
+}
+```
