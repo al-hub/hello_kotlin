@@ -361,7 +361,9 @@ job = GlobalScope.launch { .. delay(1) .. }
 
 ```
 
- 
+``` 
 Coroutine -- Coroutine Context -- Coroutine Scope  
                                  -----------------   
                                      launch()
+```
+ 
