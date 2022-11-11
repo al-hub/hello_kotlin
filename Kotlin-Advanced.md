@@ -387,3 +387,16 @@ class MainActivity : AppCompatActivity() , CoroutineScope {
 
 
 ```
+- Dispatcher
+```kotlin
+fun main() {
+    runBlocking(Dispatchers.IO) {
+        println(Thread.currentThread().name)
+        
+        launch(Dispatchers.Default) {
+            delay(100)
+            println("Default:" + Thread.currentThread().name)
+        }
+    }
+}
+```
