@@ -423,3 +423,30 @@ fun main() {
 
 }
 ```
+- withContext 중간에 dispather를 바꿀 때,
+```kotlin
+fun main() {
+
+    fun logger(message: String) = println("${Thread.currentThread().name}: $message")
+
+    runBlocking {
+        logger("Starting")
+        withContext(newSingleThreadContext("A")) {
+            logger("running in new context")
+            withContext(newSingleThreadContext("B")){
+                logger("running in new context")
+            }
+        }
+        logger("Completing")
+    }
+
+} 
+```
+결과
+```shell
+main: Starting
+A: running in new context
+B: running in new context
+main: Completing
+```
+ 
