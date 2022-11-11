@@ -342,3 +342,4 @@ fun main() {
     println("Done")
 }
 ```
+main thread를 사용하기때문에 실전(android)에서 바로 사용하면 다른기능들이 먹통이 된다.   
